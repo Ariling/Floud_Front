@@ -16,6 +16,24 @@
   }
 }
 
+@layer components {
+  .landingbutton {
+    @apply w-[65vw] border-[#A1A1A1] border-[1px] rounded-[50px] h-[6.8vh] text-center text-[19px] font-semibold text-[#8A9CB2];
+  }
+  .logininputwrap {
+    @apply inline-flex flex-col items-start h-auto w-[76vw] mb-[47px];
+  }
+  .logintext {
+    @apply text-[#737373] font-semibold text-[23px] tracking-[-1.384px] text-center;
+  }
+  .logininput {
+    @apply py-[12.5px] w-full border-b-[#A1A1A1] border-b-[1px] focus:outline-none;
+  }
+  .loginbutton {
+    @apply text-[19px] font-semibold text-center rounded-[50px] w-[113px] h-[44px] items-center gap-2.5 border-[1px] border-black;
+  }
+}
+
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
