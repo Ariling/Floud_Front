@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import style from '../../styles/Anony.module.scss';
 import Image from 'next/image';
-import heart from '../../img/svg/heartEmpty.svg';
-import chat from '../../img/svg/chat.svg';
-import char1 from '../../img/svg/Group 32.svg';
+import Heart from '../../img/svg/heartEmpty.svg';
+import Chat from '../../img/svg/chat.svg';
+import Char1 from '../../img/svg/Group 32.svg';
 
 export default function AnnoyComment({
 	comments,
@@ -15,11 +15,11 @@ export default function AnnoyComment({
 		<>
 			<div className={`${style.row} ${style.heartComment}`}>
 				<div className={style.row}>
-					<Image className={style.heart} src={heart} />
+					<Heart className={style.heart} />
 					<div>{totalLikes}</div>
 				</div>
 				<div className={style.row}>
-					<Image src={chat} />
+					<Chat />
 					<div>{totalComments}</div>
 				</div>
 			</div>
@@ -28,8 +28,12 @@ export default function AnnoyComment({
 					comments.map((value, index) => {
 						return (
 							<div className={style.comment}>
-								<Image className={style.commentImg} src={char1} />
-								<div>{value}</div>
+								<div>
+									<Char1 className={style.commentImg} />
+								</div>
+								<div>
+									<div>{value}</div>
+								</div>
 							</div>
 						)
 					})
