@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import style from '../../styles/Anony.module.scss';
 import Image from 'next/image';
-import map from '../../img/svg/map.svg';
+import Map from '@/img/svg/map.svg';
 import { useSwiper } from 'swiper/react';
-import arrow from '../../img/svg/Arrow 7.svg';
+import Arrow from '@/img/svg/Arrow7.svg';
 import AnnoyComment from './AnonyComment';
 
 // prop 으로 만들어 놓기....~
@@ -41,12 +41,11 @@ export default function AnnoyRetro({
     return (
         <div className={`${style.retro} ${isDetail ? style.retroDetail : ''}`} onClick={onCardClick}>
             <div className={`${style.row} ${style.rowHeight}`}>
-                <Image src={map} />
+                <Map />
                 <div className={style.anonyMap}>어딘가에서</div>
                 {
                     isDetail && (
-                        <Image
-                            src={arrow}
+                        <Arrow
                             className={style.arrow}
                             onClick={onArrowClick}
                         />
