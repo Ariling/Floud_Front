@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import LandingButton from "@/components/landing/LandingButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,7 +9,7 @@ export default function Home() {
     <main
       className={`flex min-h-screen flex-col items-center justify-center ${inter.className}`}
     >
-      <div>초기세팅</div>
+      <LandingButton />
     </main>
   );
 }
