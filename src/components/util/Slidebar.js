@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import XButton from "@/img/nav/x.svg";
 import NavOption from "./NavOption";
 import Alarm from "./Alarm";
+import CommentAndLikeCompo from "../relatednav/CommentAndLikeHeader";
 
 export default function Sidebar() {
   const [open, setOpen] = useRecoilState(sidebarOpenAtom);
@@ -35,7 +36,9 @@ export default function Sidebar() {
           <div>
             {option === "comment" ? (
               <>
-                <div>장담못함..</div>
+                <div className=" px-[7vw] w-full h-screen flex flex-col justify-start items-center">
+                  <CommentAndLikeCompo />
+                </div>
               </>
             ) : (
               <>

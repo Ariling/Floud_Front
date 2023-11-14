@@ -32,6 +32,12 @@
   .loginbutton {
     @apply text-[19px] font-semibold text-center rounded-[50px] w-[113px] h-[44px] items-center gap-2.5 border-[1px] border-black;
   }
+  .choicebutton {
+    @apply w-[102px] h-[35px] rounded-[15px] bg-black text-white text-center text-[17px] tracking-[-1.027px];
+  }
+  .notchoicebutton {
+    @apply w-[102px] h-[35px] rounded-[15px] border-[1px] border-[#C1C1C1] bg-white text-center text-[17px] tracking-[-1.027px];
+  }
 }
 
 /* body {
