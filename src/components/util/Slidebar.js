@@ -4,6 +4,7 @@ import style from "@/styles/Nav.module.scss";
 import { useRecoilState } from "recoil";
 import XButton from "@/img/nav/x.svg";
 import NavOption from "./NavOption";
+import Alarm from "./Alarm";
 
 export default function Sidebar() {
   const [open, setOpen] = useRecoilState(sidebarOpenAtom);
@@ -38,7 +39,7 @@ export default function Sidebar() {
               </>
             ) : (
               <>
-                <div>진짜못함...</div>
+                <Alarm />
               </>
             )}
           </div>

@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { sidebarOpenAtom, sidebarShowAtom } from "@/store/atoms";
 import { useRouter } from "next/router";
 import NavOption from "./NavOption";
+import Alarm from "./Alarm";
 
 const Nav = () => {
   const open = useRecoilValue(sidebarOpenAtom);
@@ -17,7 +18,7 @@ const Nav = () => {
         <>
           <div className="absolute top-0 bg-white z-50 w-screen h-screen">
             <NavOption />
-            <div>으음</div>
+            <Alarm />
           </div>
         </>
       ) : null}
