@@ -31,7 +31,7 @@ export default function Sidebar() {
       ) : (
         <>
           <NavOption />
-          <div className={style.s_bar}>
+          <div>
             {option === "comment" ? (
               <>
                 <div>장담못함..</div>

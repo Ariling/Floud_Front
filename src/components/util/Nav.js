@@ -1,18 +1,13 @@
 import React from "react";
 import Sidebar from "./Slidebar";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { sidebarOpenAtom, sidebarShowAtom } from "@/store/atoms";
-import FlouD from "@/img/nav/FlouD.png";
-import Bell from "@/img/nav/bell.svg";
-import SideSvg from "@/img/nav/side.svg";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import NavOption from "./NavOption";
 
 const Nav = () => {
-  const [open, setOpen] = useRecoilState(sidebarOpenAtom);
-  const [option, setOption] = useRecoilState(sidebarShowAtom);
-  const router = useRouter();
+  const open = useRecoilValue(sidebarOpenAtom);
+  const option = useRecoilValue(sidebarShowAtom);
   return open === true ? (
     <Sidebar />
   ) : (
