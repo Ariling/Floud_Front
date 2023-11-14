@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { LikeTestData } from "./LikeTestData";
 import likebox from "@/img/nav/likebox.png";
 import Image from "next/image";
@@ -7,18 +7,19 @@ import BlankHeart from "@/img/nav/blanklikeheart.svg";
 import dayjs from "dayjs";
 
 const Likebox = () => {
-  const data = LikeTestData;
+  const [data, setData] = useState(LikeTestData);
   //현재는 이렇게 해 둔 상태 나중에 바꿀 예정... 근데 이거 좋아요 취소되면 어떻게 되는거?
   return (
     <div>
       {data.map((e) => (
         <>
-          <div className="w-full relative h-[65px] mb-[30px]">
+          <div className="w-full relative h-[65px] mb-[30px]" key={e.id}>
             <Image src={likebox} alt="좋아요박스" />
             <div
               className="absolute top-0 left-[92%]"
               onClick={() => {
-                e.like = !e.like;
+                const newData = data.filter((item) => item !== e);
+                setData(newData);
               }}
             >
               {e.like === true ? <LikeHeart /> : <BlankHeart />}

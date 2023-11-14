@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CommentTestData } from "./CommentTestData";
 import CommentBox from "@/img/nav/commentbox.png";
 import CommentXBox from "@/img/nav/commentXbox.svg";
@@ -8,20 +8,22 @@ import Image from "next/image";
 import dayjs from "dayjs";
 
 const Commentbox = () => {
-  const data = CommentTestData;
-  //onClick시 삭제되는건 나중에 할 예정.. api연결도 해야되서
+  const [data, setData] = useState(CommentTestData);
   return (
     <div>
       {data.map((e) => (
         <>
-          <div className="w-full h-[140px] relative mb-[30px]">
+          <div className="w-full h-[140px] relative mb-[30px]" key={e.id}>
             <Image src={CommentBox} alt="comment박스" />
-            <div className="absolute top-0 left-[88%]">
+            <div
+              className="absolute top-0 left-[88%]"
+              onClick={() => {
+                const newData = data.filter((item) => item !== e);
+                setData(newData);
+              }}
+            >
               <CommentXBox />
-              <div
-                className="absolute top-[20%] left-[35%]"
-                onClick={() => alert("아직은 안됩니다")}
-              >
+              <div className="absolute top-[20%] left-[35%]">
                 <CommentBtn />
               </div>
             </div>
