@@ -23,3 +23,17 @@ export const signupDayAtom = atom({
     day: "01",
   },
 });
+
+export const sidebarOpenAtom = atom({
+  key: "sidebarOpenAtom",
+  default: {
+    open: false,
+  },
+});
+
+export const sidebarShowAtom = atom({
+  key: "sidebarShowAtom",
+  default: {
+    option: "basic",
+  },
+});

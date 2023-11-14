@@ -1,11 +1,32 @@
 import React from "react";
+import Sidebar from "./Slidebar";
+import { useRecoilState } from "recoil";
+import { sidebarOpenAtom, sidebarShowAtom } from "@/store/atoms";
+import FlouD from "@/img/nav/FlouD.png";
+import Bell from "@/img/nav/bell.svg";
+import SideSvg from "@/img/nav/side.svg";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import NavOption from "./NavOption";
 
 const Nav = () => {
-  return (
-    <div className="h-[83.5px] w-[90vw] flex items-center justify-between mx-[18px] pt-9 pb-[18px] sticky top-0 left-0 border-b border-black">
-      <div>로고</div>
-      <div>svg파트</div>
-    </div>
+  const [open, setOpen] = useRecoilState(sidebarOpenAtom);
+  const [option, setOption] = useRecoilState(sidebarShowAtom);
+  const router = useRouter();
+  return open === true ? (
+    <Sidebar />
+  ) : (
+    <>
+      <NavOption />
+      {option === "alarm" && open === false ? (
+        <>
+          <div className="absolute top-0 bg-white z-50 w-screen h-screen">
+            <NavOption />
+            <div>으음</div>
+          </div>
+        </>
+      ) : null}
+    </>
   );
 };
 
