@@ -18,7 +18,10 @@ const Commentbox = () => {
             <Image src={CommentBox} alt="comment박스" />
             <div className="absolute top-0 left-[88%]">
               <CommentXBox />
-              <div className="absolute top-[20%] left-[35%]">
+              <div
+                className="absolute top-[20%] left-[35%]"
+                onClick={() => alert("아직은 안됩니다")}
+              >
                 <CommentBtn />
               </div>
             </div>
