@@ -13,7 +13,9 @@ const PopupModal = () => {
   return (
     <div className={style.modalBg}>
       <div className={style.modalBox}>
-        <Image src={popupCloud} alt="팝업구름" />
+        <div className="w-[193.321px] h-[184.17px] absolute top-[30%] left-[22%]">
+          <Image src={popupCloud} alt="팝업구름" />
+        </div>
         <div className="absolute top-[8%] left-[26%]">
           <div className={style.modalText}>
             <div className="font-bold text-[25px] tracking-[-1.5px]">

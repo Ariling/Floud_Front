@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const WaitingPage = () => {
   const router = useRouter();
-  const loading = useLoadingTime(4000);
+  const loading = useLoadingTime(4500);
   useEffect(() => {
     if (loading) {
       router.replace("/main");

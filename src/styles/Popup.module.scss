@@ -16,6 +16,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 10px;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.2) 100%
+    ),
+    linear-gradient(180deg, #b6d2fc 0%, rgba(242, 242, 242, 0) 156.05%), #fff;
 }
 
 .modalBtn {
