@@ -9,6 +9,7 @@ import writeCloud from "@/img/main/writeCloud.png";
 import notWriteCloud from "@/img/main/notWriteCloud.png";
 import Image from "next/image.js";
 import PopupModalBtn from "../util/PopupModalBtn.js";
+import PostCard from "./PostCard.js";
 
 const MainCard = () => {
   const dayInfo = useRecoilValue(weeklyDayAtom);
@@ -106,8 +107,7 @@ const MainCard = () => {
         )}
       </div>
       <div>
-        카드남길 부분 {dayInfo.dayShow} {dayInfo.monthSee}.
-        <PopupModalBtn />
+        <PostCard />
       </div>
     </>
   );
