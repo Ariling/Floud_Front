@@ -17,15 +17,15 @@ const Commentbox = () => {
             <Image src={CommentBox} alt="comment박스" />
             <div
               className="absolute top-0 left-[88%]"
-              onClick={() => {
-                const newData = data.filter((item) => item !== e);
-                setData(newData);
-              }}
+              // onClick={() => {
+              //   const newData = data.filter((item) => item !== e);
+              //   setData(newData);
+              // }}
             >
               <CommentXBox />
-              <div className="absolute top-[20%] left-[35%]">
+              {/* <div className="absolute top-[20%] left-[35%]">
                 <CommentBtn />
-              </div>
+              </div> */}
             </div>
             <div className="px-[22px] w-full flex absolute top-[12%] flex-col">
               <div className="ml-[7px] flex gap-[25px] text-[22px] font-extrabold tracking-[-1.2px] leading-[110%]">
