@@ -1,7 +1,13 @@
-import React from "react";
+"use client"
+import AnonyList from '../../components/Anony/AnonyList';
 
 const index = () => {
-  return <div>여기다가 하면 됩니다</div>;
+
+  return (
+    <div className='test'>
+      <AnonyList/>
+    </div>
+  )
 };
 
 export default index;
