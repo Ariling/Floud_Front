@@ -1,0 +1,166 @@
+.retro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+}
+
+.spaceBetween{
+    justify-content: space-between;
+    >button{
+        border: 1px solid #282828;
+        background: none;
+        border-radius: 50px;
+        padding: 5px 15px; 
+        font-weight: 1.2rem;
+        margin-bottom: 5px;
+        width: fit-content;
+        height: fit-content;
+    }
+}
+.date {
+    font-weight: 900;
+    font-size: 54px;
+}
+
+.month {
+    font-weight: 400;
+    font-size: 54px;
+    margin-left: 10px;
+}
+
+.todayTitle {
+    width: 220px;
+    font-weight: 600;
+    font-size: 46px;
+    text-align: start;
+    word-break: keep-all;
+}
+
+.retroS {
+    width: 90%;
+    margin: 30px auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+.dateS {
+    font-weight: 900;
+    font-size: 32px;
+}
+
+.monthS {
+    font-weight: 400;
+    font-size: 32px;
+    margin-left: 10px;
+}
+
+.todayTitleS {
+    width: 150px;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: start;
+    word-break: keep-all;
+    margin-bottom: 10px;
+}
+
+
+.keep {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+    
+    >div {
+        background-color: #fff;
+        border: 1px solid #282828;
+        border-radius: 50px;
+        padding: 3px 15px;
+        font-weight: 1.2rem;
+        margin-bottom: 5px;
+        width: fit-content;
+    }
+}
+
+.problem {
+    display: flex;
+    margin-top: 20px;
+
+    >div {
+        border: 1px solid #282828;
+        background-color: #fff;
+        border-radius: 50px;
+        padding: 3px 15px;
+        font-weight: 1.2rem;
+        margin-bottom: 5px;
+        width: fit-content;
+    }
+}
+
+.text {
+    width: 100%;
+    border-style: none;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(white, white 34px, #ccc 34px, #ccc 35px, white 35px);
+    line-height: 35px;
+    height: auto;
+    min-height: 35px;
+    margin: 10px 0 50px 0;
+    text-align: start;
+}
+
+.text-background0 {
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(#c8f5ff, #c8f5ff 34px, #ccc 34px, #ccc 35px, #c8f5ff 35px);
+}
+
+.text-background1 {
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(#bdd4ff, #bdd4ff 34px, #ccc 34px, #ccc 35px, #bdd4ff 35px);
+}
+
+.text-background2 {
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(#a1d8ff, #a1d8ff 34px, #ccc 34px, #ccc 35px, #a1d8ff 35px);
+}
+
+.text-background3 {
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(#c3d0ea, #c3d0ea 34px, #ccc 34px, #ccc 35px, #c3d0ea 35px);
+}
+
+.tag {
+    display: flex;
+    justify-content: space-between;
+    >div {
+        padding-top: 5px;
+        text-align: center;
+        background-color: #fff;
+        align-items: center;
+        width: 28%;
+        height: 35px;
+        border-radius: 15px;
+        border-style: none;
+        box-shadow: 0 0 3px rgb(160, 160, 160);
+    }
+}

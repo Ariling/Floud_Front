@@ -1,0 +1,10 @@
+.textoverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: 14px;
+  font-weight: 350;
+  letter-spacing: -0.84px;
+}

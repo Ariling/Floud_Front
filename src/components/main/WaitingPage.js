@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const WaitingPage = () => {
   const router = useRouter();
-  const loading = useLoadingTime(3000);
+  const loading = useLoadingTime(4500);
   useEffect(() => {
     if (loading) {
       router.replace("/main");
@@ -14,7 +14,12 @@ const WaitingPage = () => {
   }, [loading]);
   return (
     <div className=" w-screen h-screen flex justify-center items-center">
-      <Image src={waitingCloud} alt="랜딩구름" />
+      <Image
+        src={waitingCloud}
+        alt="랜딩구름"
+        layout="fill"
+        objectFit="cover"
+      />
     </div>
   );
 };
