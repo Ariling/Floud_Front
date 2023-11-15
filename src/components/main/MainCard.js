@@ -106,9 +106,8 @@ const MainCard = () => {
           </>
         )}
       </div>
-      <div>
-        <PostCard />
-      </div>
+      {/* 해당 부분은 나중에 위쪽으로 옮겨질 예정 */}
+      <PostCard />
     </>
   );
 };

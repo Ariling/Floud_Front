@@ -26,16 +26,12 @@ export const signupDayAtom = atom({
 
 export const sidebarOpenAtom = atom({
   key: "sidebarOpenAtom",
-  default: {
-    open: false,
-  },
+  default: false,
 });
 
 export const sidebarShowAtom = atom({
   key: "sidebarShowAtom",
-  default: {
-    option: "basic",
-  },
+  default: "basic",
 });
 
 export const writeCompleteModalAtom = atom({
