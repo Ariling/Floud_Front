@@ -9,29 +9,31 @@
   padding: 30px 20px;
   z-index: 999;
   box-sizing: border-box;
-  >div {
+  > div {
     display: flex;
     gap: 15px;
   }
 }
 
-.s_bar_top{
+.s_bar_top {
   margin-bottom: 15px;
-  text-align: end;
+  display: flex;
+  justify-content: flex-end;
 }
 .s_bar {
   list-style-type: none;
   text-align: end;
   font-size: 35px;
   border-top: 1px solid #282828;
-  >ul {
+  margin: 0px 18px;
+  padding-top: 67.5px;
+  > ul {
     font-weight: 900;
     margin-bottom: 32px;
   }
 
-  >li {
+  > li {
     font-weight: 600;
     margin-bottom: 87px;
-    color: #656565;
   }
 }

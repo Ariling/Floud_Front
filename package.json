@@ -17,7 +17,8 @@
     "react-dom": "^18",
     "recoil": "^0.7.7",
     "sass": "^1.69.5",
-    "swiper": "^11.0.4"
+    "swiper": "^11.0.4",
+    "react-hook-form": "^7.48.2",
   },
   "devDependencies": {
     "autoprefixer": "^10",

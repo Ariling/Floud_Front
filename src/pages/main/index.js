@@ -1,3 +1,4 @@
+import Weeklydate from "@/components/main/Weeklydate";
 import React from "react";
 import { useEffect, useState } from 'react';
 
@@ -25,30 +26,33 @@ const index = () => {
     console.log('onEditClick :', memoirId);
   }
 
+  <>
+  {/* <KPT/> */}
+  <MyRetroList
+    memoirId={memoir_id}
+    date={date}
+    month={`${month}.`}
+    todayTitle={title}
+    onCardClick={onCardClick}
+    onEditClick={onEditClick}
+  />
+  <MyRetro 
+    // memoirId={memoir_id}
+    date={date}
+    month={`${month}.`}
+    todayTitle={title}
+    memoir_keep={memoir_keep}
+    memoir_problem={memoir_problem}
+    memoir_try={memoir_try}
+    tag1={tag1}
+    tag2={tag2}
+    tag3={tag3}
+  />
+</>
   return (
-    <>
-      {/* <KPT/> */}
-      <MyRetroList
-        memoirId={memoir_id}
-        date={date}
-        month={`${month}.`}
-        todayTitle={title}
-        onCardClick={onCardClick}
-        onEditClick={onEditClick}
-      />
-      <MyRetro 
-        // memoirId={memoir_id}
-        date={date}
-				month={`${month}.`}
-        todayTitle={title}
-        memoir_keep={memoir_keep}
-        memoir_problem={memoir_problem}
-        memoir_try={memoir_try}
-        tag1={tag1}
-        tag2={tag2}
-        tag3={tag3}
-      />
-    </>
+    <div className="w-screen h-screen flex flex-col justify-start items-center px-[30px]">
+      <Weeklydate />
+    </div>
   );
 };
 
