@@ -6,12 +6,14 @@ import XButton from "@/img/nav/x.svg";
 import NavOption from "./NavOption";
 import Alarm from "./Alarm";
 import CommentAndLikeCompo from "../relatednav/CommentAndLikeHeader";
+import { useRouter } from "next/router";
 
 export default function Sidebar() {
+  const router = useRouter();
   const [open, setOpen] = useRecoilState(sidebarOpenAtom);
   const [option, setOption] = useRecoilState(sidebarShowAtom);
   return (
-    <div className="absolute top-0 bg-white z-50 w-screen h-screen">
+    <div className="fixed top-0 bg-white z-50 w-screen h-screen">
       {option === "basic" ? (
         <div className="pt-[25px]">
           <div
@@ -24,9 +26,24 @@ export default function Sidebar() {
             <XButton />
           </div>
           <div className={style.s_bar}>
-            <ul>나의 회고 FlouD</ul>
-            <li>회고 적기</li>
-            <ul>익명회고</ul>
+            <ul
+              onClick={() => {
+                setOption("basic");
+                setOpen(false);
+                router.replace("/main");
+              }}
+            >
+              나의 회고 FlouD
+            </ul>
+            <ul
+              onClick={() => {
+                setOption("basic");
+                setOpen(false);
+                router.replace("/anony");
+              }}
+            >
+              익명회고
+            </ul>
             <li onClick={() => setOption("comment")}>댓글/좋아요</li>
           </div>
         </div>
