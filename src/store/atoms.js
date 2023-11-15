@@ -37,3 +37,8 @@ export const sidebarShowAtom = atom({
     option: "basic",
   },
 });
+
+export const writeCompleteModalAtom = atom({
+  key: "writeCompleteModalAtom",
+  default: false,
+});
