@@ -2,6 +2,7 @@ import { writeCompleteModalAtom } from "@/store/atoms";
 import React from "react";
 import { useRecoilState } from "recoil";
 import PopupModal from "./PopupModal";
+import style from "@/styles/KPTInsert.module.scss";
 
 const PopupModalBtn = () => {
   const [modalOpen, setModalOpen] = useRecoilState(writeCompleteModalAtom);
@@ -9,8 +10,8 @@ const PopupModalBtn = () => {
     setModalOpen(!modalOpen);
   };
   return (
-    <div>
-      <button onClick={modalClick}>팝업 모달 테스트</button>
+    <div className={style.submit_bt} onClick={modalClick}>
+      <button type="submit">작성완료</button>
       {modalOpen && <PopupModal />}
     </div>
   );
