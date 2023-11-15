@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const getRemainTime = (countDown) => {
   const hours = Math.floor(
-    (countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    (countDown % (1000 * 60 * 60 * 30)) / (1000 * 60 * 60)
   );
   const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countDown % (1000 * 60)) / 1000);
