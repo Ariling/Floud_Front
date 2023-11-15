@@ -1,11 +1,28 @@
 import React from "react";
+import Sidebar from "./Slidebar";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { sidebarOpenAtom, sidebarShowAtom } from "@/store/atoms";
+import { useRouter } from "next/router";
+import NavOption from "./NavOption";
+import Alarm from "./Alarm";
 
 const Nav = () => {
-  return (
-    <div className="h-[83.5px] w-[90vw] flex items-center justify-between mx-[18px] pt-9 pb-[18px] sticky top-0 left-0 border-b border-black">
-      <div>로고</div>
-      <div>svg파트</div>
-    </div>
+  const open = useRecoilValue(sidebarOpenAtom);
+  const option = useRecoilValue(sidebarShowAtom);
+  return open === true ? (
+    <Sidebar />
+  ) : (
+    <>
+      <NavOption />
+      {option === "alarm" && open === false ? (
+        <>
+          <div className="absolute top-0 bg-white z-50 w-screen h-screen">
+            <NavOption />
+            <Alarm />
+          </div>
+        </>
+      ) : null}
+    </>
   );
 };
 

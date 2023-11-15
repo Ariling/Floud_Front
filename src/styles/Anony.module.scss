@@ -1,0 +1,189 @@
+.retro {
+ 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.retroDetail {
+    height: 100vh;
+}
+
+.anonyMap {
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+}
+
+.rowHeight {
+    height: 34px;
+}
+
+.date {
+    font-weight: 900;
+    font-size: 54px;
+}
+
+.month {
+    font-weight: 400;
+    font-size: 54px;
+    margin-left: 10px;
+}
+
+.todayTitle {
+    width: 220px;
+    font-weight: 600;
+    font-size: 46px;
+    text-align: start;
+    word-break: keep-all;
+}
+
+.arrow {
+    margin-left: auto;
+}
+
+.keep {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 20px;
+    >div {
+        border: 1px solid #282828;
+        background: none;
+        border-radius: 50px;
+        padding: 3px 15px;
+        font-weight: 1.2rem;
+        margin-bottom: 5px;
+        width: fit-content;
+    }
+}
+
+.problem {
+    display: flex;
+    margin-top: 20px;
+    >div {
+        border: 1px solid #282828;
+        background: none;
+        border-radius: 50px;
+        padding: 3px 15px;
+        font-weight: 1.2rem;
+        margin-bottom: 5px;
+        width: fit-content;
+    }
+}
+
+.text {
+    width: 100%;
+    border-style: none;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
+    background-image:
+        linear-gradient(to right, white 0px, transparent 0px),
+        linear-gradient(to left, white 0px, transparent 0px),
+        repeating-linear-gradient(white, white 34px, #ccc 34px, #ccc 35px, white 35px);
+    line-height: 35px;
+    height: auto;
+    min-height: 35px;
+    margin: 10px 0 50px 0;
+    text-align: start;
+}
+.comments{
+    padding-bottom: 30px;
+}
+.comment{
+    width: 100%;
+    background-color: #E9EDF1;
+    // min-height: 73px;
+    border-radius: 20px;
+    font-size: 17px;
+    display: flex;
+    justify-content: start;
+    padding: 18px 25px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    align-items: stretch;
+    >div:nth-of-type(1) {
+    }
+    >div:nth-of-type(2){
+        display: flex;
+        align-items: center;
+        margin-left: 15px;
+        word-break: keep-all;
+        text-align: start;
+        >div {
+            height: fit-content;
+        }
+    }
+}
+.commentImg{
+
+}
+.count{
+    line-height: 1;
+}
+.heart{
+    width: 21px;
+    height: 19px;
+}
+.heartComment{
+    margin-bottom: 10px;
+    justify-content: end;
+    gap: 20px;
+    >div{
+        >div{
+            margin-left: 5px;
+        }
+    }
+}
+.commentInput {
+    background-color: #fff;
+    width: 100%;
+    height: 77px;
+    border-radius: 20px 20px 0 0;
+    padding: 17px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+    animation-name: detail-close-border;
+    animation-duration: 1s;
+    >input{
+        height: 43px;
+        width: 85%;
+        border-radius: 15px;
+        border-style: none ;
+        background-color: #d9d9d9;
+        opacity: 50%;
+        padding-left: 15px;
+        box-sizing: border-box;
+    }   
+}
+
+.commentInputDetail {
+    border-radius: 0;
+    animation-name: detail-open-border;
+    animation-duration: 1s;
+}
+
+@keyframes detail-open-border {
+    from {
+        border-radius: 20px 20px 0 0;
+    }
+    to {
+        border-radius: 0;
+    }
+}
+
+@keyframes detail-close-border {
+from {
+    border-radius: 0;
+}
+to {
+    border-radius: 20px 20px 0 0;
+}
+}
