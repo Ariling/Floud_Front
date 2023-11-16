@@ -5,10 +5,15 @@ import Image from "next/image";
 import LikeHeart from "@/img/nav/likeheart.svg";
 import BlankHeart from "@/img/nav/blanklikeheart.svg";
 import dayjs from "dayjs";
+import { Noto_Sans_KR } from "next/font/google";
+
+const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const Likebox = () => {
   const [data, setData] = useState(LikeTestData);
   //현재는 이렇게 해 둔 상태 나중에 바꿀 예정... 근데 이거 좋아요 취소되면 어떻게 되는거?
+  //여기가 이제 id대신 memori_id, title, created_at을 활용
+  //memoir_like_id는 보내줄 때 활용하는 것으로 보임
   return (
     <div>
       {data.map((e) => (
@@ -29,7 +34,7 @@ const Likebox = () => {
                 <div className="text-[34px] tracking-[-2.073px] leading-[22.215px]">
                   {dayjs(e.date).format("DD")}
                 </div>
-                <div>{e.title}</div>
+                <div className={`${noto.className}`}>{e.title}</div>
               </div>
             </div>
           </div>

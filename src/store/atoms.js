@@ -38,3 +38,8 @@ export const writeCompleteModalAtom = atom({
   key: "writeCompleteModalAtom",
   default: false,
 });
+
+export const LikeandCommentCurrentday = atom({
+  key: "likeandcommentday",
+  default: dayjs(),
+});

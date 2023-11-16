@@ -3,11 +3,16 @@ import style from "@/styles/Alarm.module.scss";
 import dayjs from "dayjs";
 import AlarmHeart from "@/img/nav/alarmheart.svg";
 import AlarmComment from "@/img/nav/alarmcomment.svg";
+import { Noto_Sans_KR } from "next/font/google";
+
+const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const AlarmBox = ({ data }) => {
   const day = dayjs(data.date).format("MM/DD HH:mm");
   return (
-    <div className="w-full h-[12.5%] border-b-[1px] border-[#E9E9E9] flex items-center gap-[11px]">
+    <div
+      className={`w-full h-[12.5%] border-b-[1px] border-[#E9E9E9] flex items-center gap-[11px] ${noto.className}`}
+    >
       <div className="w-[46px] h-[46px] border-[1px] border-[#E5E5E5] rounded-[50%] relative">
         <div className="absolute top-[30%] left-[30%]">
           {data.type === "like" ? <AlarmHeart /> : <AlarmComment />}

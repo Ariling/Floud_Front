@@ -3,8 +3,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import SingupDate from "./SingupDate";
+import { useRecoilValue } from "recoil";
+import { signupDayAtom } from "@/store/atoms";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const SignupForm = () => {
+  const dateform = useRecoilValue(signupDayAtom);
   const {
     register,
     watch,
@@ -13,11 +19,13 @@ const SignupForm = () => {
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
+    //생년월일 잘 찍힘
+    console.log(`${dateform.year}-${dateform.month}-${dateform.day}`);
     alert("회원가입성공");
-    router.replace("/");
+    // router.replace("/");
   };
   return (
-    <form onSubmit={onSubmit} className="pl-6 pr-[26px]">
+    <form onSubmit={onSubmit} className={`pl-6 pr-[26px] ${inter.className}`}>
       <div className="logininputwrap">
         <div className="logintext">Username</div>
         <input
@@ -52,7 +60,7 @@ const SignupForm = () => {
         />
       </div>
       <div className="logininputwrap">
-        <div className="logintext">Email</div>
+        <div className="logintext">Phone number</div>
         <input
           placeholder="전화번호를 입력해주세요(-제외)"
           type="text"

@@ -6,14 +6,23 @@ import CommentBtn from "@/img/nav/commentXbtn.svg";
 import TestCloud from "@/img/nav/testcloud.svg";
 import Image from "next/image";
 import dayjs from "dayjs";
+import { Inter, Noto_Sans_KR } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const Commentbox = () => {
   const [data, setData] = useState(CommentTestData);
+  //여기도 그냥... memori_id, title, created_at(format필요), content로 이루어질 듯..?
+  //memori_id로 이동하나보다 여기서는..
   return (
     <div>
       {data.map((e) => (
         <>
-          <div className="w-full h-[140px] relative mb-[30px]" key={e.id}>
+          <div
+            className={`w-full h-[140px] relative mb-[30px] ${noto.className}`}
+            key={e.id}
+          >
             <Image src={CommentBox} alt="comment박스" />
             <div
               className="absolute top-0 left-[88%]"
@@ -29,7 +38,9 @@ const Commentbox = () => {
             </div>
             <div className="px-[22px] w-full flex absolute top-[12%] flex-col">
               <div className="ml-[7px] flex gap-[25px] text-[22px] font-extrabold tracking-[-1.2px] leading-[110%]">
-                <div className="text-[34px] tracking-[-2.073px] leading-[22.215px]">
+                <div
+                  className={`text-[34px] tracking-[-2.073px] leading-[22.215px] ${inter.className}`}
+                >
                   {dayjs(e.date).format("DD")}
                 </div>
                 <div>{e.title}</div>

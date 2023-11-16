@@ -2,6 +2,9 @@ import { useRouter } from "next/router";
 import React from "react";
 import { regExpEmail, regExgPassword } from "@/store/regExp";
 import { useForm } from "react-hook-form";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const LoginForm = () => {
   const {
@@ -16,7 +19,7 @@ const LoginForm = () => {
     router.replace("/waiting");
   };
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className={`${inter.className}`}>
       <div className="logininputwrap">
         <div className="logintext">Email</div>
         <input

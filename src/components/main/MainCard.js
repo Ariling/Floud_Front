@@ -8,8 +8,10 @@ import { testData } from "./testData.js";
 import writeCloud from "@/img/main/writeCloud.png";
 import notWriteCloud from "@/img/main/notWriteCloud.png";
 import Image from "next/image.js";
-import PopupModalBtn from "../util/PopupModalBtn.js";
 import PostCard from "./PostCard.js";
+import { Noto_Sans_KR } from "next/font/google";
+
+const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const MainCard = () => {
   const dayInfo = useRecoilValue(weeklyDayAtom);
@@ -44,7 +46,9 @@ const MainCard = () => {
   const Countdown = dynamic(() => import("./countdown.js"), { ssr: false });
   return (
     <>
-      <div className="w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center">
+      <div
+        className={`w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center ${noto.className}`}
+      >
         {(useCheckRetroTime(dayInfo.dayDataFormat) ||
           dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat) &&
         data.length === 0 ? (
