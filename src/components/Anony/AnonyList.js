@@ -68,6 +68,9 @@ export default function AnnoyList() {
 											comments={item.comments}
 											totalLikes={item.total_like}
 											totalComments={item.total_comment}
+											memoirKeep={item.memoir_keep}
+											memoirProblem={item.memoir_prob}
+											memoirTry={item.memoir_try}
 											onDetailOpen={onDetailOpen}
 											onDetailClose={onDetailClose}
 										/>
