@@ -4,9 +4,10 @@ import { useRecoilState } from "recoil";
 import PopupModal from "./PopupModal";
 import style from "@/styles/KPTInsert.module.scss";
 
-const PopupModalBtn = () => {
+const PopupModalBtn = ({onButtonClick}) => {
   const [modalOpen, setModalOpen] = useRecoilState(writeCompleteModalAtom);
   const modalClick = () => {
+    onButtonClick();
     setModalOpen(!modalOpen);
   };
   return (

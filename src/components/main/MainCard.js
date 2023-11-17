@@ -28,7 +28,9 @@ const MainCard = () => {
   };
 
   const onEditClick = (memoirId) => {
-    console.log("onEditClick :", memoirId);
+    document.startViewTransition(() => {
+      router.push(`/memoir/edit/${memoirId}`);
+    })
   };
 
   const onWriteClick = () => {

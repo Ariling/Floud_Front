@@ -6,7 +6,7 @@ import PopupModalBtn from "../util/PopupModalBtn";
 import { useEffect, useState } from 'react'
 import axios from "axios";
 
-export default function KPT(){
+export default function KPTEdit({memoirId}){
   const [inputValue, setInputValue] = useState('');
   const [keepValue, setKeepValue] = useState('');
   const [problemValue, setProblemValue] = useState('');
@@ -14,6 +14,19 @@ export default function KPT(){
   const [tagValue1, setTagValue1] = useState('');
   const [tagValue2, setTagValue2] = useState('');
   const [tagValue3, setTagValue3] = useState('');
+
+  useEffect (() => {
+    axios.get(`/memoir/${memoirId}`)
+    .then(res => {
+      setInputValue(res.data.inputValue);
+      setKeepValue(res.data.keepValue);
+      setProblemValue(res.data.problemValue);
+      setTryValue(res.data.tryValue);
+      setTagValue1(res.data.tagValue1);
+      setTagValue2(res.data.tagValue2);
+      setTagValue3(res.data.tagValue3);
+    })
+  },[])
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
@@ -39,7 +52,8 @@ export default function KPT(){
     setTagValue3(e.target.value)
   }
   const onButtonClick = () => {
-    axios.post(`/memoir`, {
+    axios.patch(`/memoir`, {
+      memoirId: memoirId,
       inputValue: inputValue, 
       keepValue: keepValue, 
       problemValue: problemValue,
