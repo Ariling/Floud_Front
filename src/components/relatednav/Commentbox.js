@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CommentTestData } from "./CommentTestData";
 import CommentBox from "@/img/nav/commentbox.png";
 import CommentXBox from "@/img/nav/commentXbox.svg";
@@ -7,21 +7,34 @@ import TestCloud from "@/img/nav/testcloud.svg";
 import Image from "next/image";
 import dayjs from "dayjs";
 import { Inter, Noto_Sans_KR } from "next/font/google";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { GetMyCommentDataAtom, LikeandCommentCurrentday } from "@/store/atoms";
+import { getMyCommentApi } from "@/apis/relatednav";
 
 const inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const Commentbox = () => {
-  const [data, setData] = useState(CommentTestData);
+  const [data, setData] = useRecoilState(GetMyCommentDataAtom);
+  const currentMonth = useRecoilValue(LikeandCommentCurrentday);
   //여기도 그냥... memori_id, title, created_at(format필요), content로 이루어질 듯..?
   //memori_id로 이동하나보다 여기서는..
-  return (
+  const getMyCommentFunc = async (user_id) => {
+    const result = await getMyCommentApi(user_id, currentMonth.format());
+    if (result !== false) {
+      setData(result);
+    }
+  };
+  useEffect(() => {
+    getMyCommentFunc(1);
+  }, [currentMonth]);
+  return data.length !== 0 ? (
     <div>
       {data.map((e) => (
         <>
           <div
             className={`w-full h-[140px] relative mb-[30px] ${noto.className}`}
-            key={e.id}
+            key={e.memoir_id}
           >
             <Image src={CommentBox} alt="comment박스" />
             <div
@@ -41,7 +54,7 @@ const Commentbox = () => {
                 <div
                   className={`text-[34px] tracking-[-2.073px] leading-[22.215px] ${inter.className}`}
                 >
-                  {dayjs(e.date).format("DD")}
+                  {dayjs(e.createdAt).format("DD")}
                 </div>
                 <div>{e.title}</div>
               </div>
@@ -50,7 +63,7 @@ const Commentbox = () => {
                   <TestCloud />
                 </div>
                 <div className=" font-light text-[16px] tracking-[-0.965px]">
-                  {e.comment}
+                  {e.content}
                 </div>
               </div>
             </div>
@@ -58,7 +71,7 @@ const Commentbox = () => {
         </>
       ))}
     </div>
-  );
+  ) : null;
 };
 
 export default Commentbox;
