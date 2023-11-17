@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import style from "@/styles/KPTInsert.module.scss";
-import PopupModalBtn from "../util/PopupModalBtn";
 
 export default function KPTTag({
   value1,
@@ -22,7 +21,6 @@ export default function KPTTag({
         <input value={value2} onChange={onChange2} placeholder="#"></input>
         <input value={value3} onChange={onChange3} placeholder="#"></input>
       </div>
-      <PopupModalBtn />
     </>
   );
 }

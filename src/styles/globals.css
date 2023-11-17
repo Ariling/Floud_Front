@@ -49,3 +49,24 @@
     )
     rgb(var(--background-start-rgb));
 } */
+
+::view-transition-old(root) {
+  animation: toLeft 0.5s ease-in;
+}
+::view-transition-new(root) {
+  animation: fromRight 0.5s ease-in;
+}
+
+@keyframes toLeft {
+  to {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+}
+
+@keyframes fromRight {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}

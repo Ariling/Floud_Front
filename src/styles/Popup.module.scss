@@ -1,11 +1,47 @@
 .modalBg {
-  background-color: rgba(0, 0, 0, 0.4);
   width: 100vw;
   height: 100vh;
-  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.modalBgOpen {
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 100;
+  animation-name: modalBgOpenAnimation;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.modalBgClose {
+  background-color: transparent;
+  z-index: -1;
+  transition-duration: 1s;
+  transition-delay: 2s;
+}
+
+@keyframes modalBgOpenAnimation {
+  from {
+    background-color: transparent;
+    z-index: -1;
+  }
+  to {
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 100;
+  }
+}
+
+.modalOpen {
+  transform: translate(-50%, -50%);
+  transition: 1s;
+}
+
+.modalClose {
+  transform: translate(-50%, -400%);
+  transition-duration: 1s;
+  transition-delay: 2s;
 }
 
 .modalBox {
@@ -14,7 +50,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 10px;
   background: linear-gradient(
       0deg,

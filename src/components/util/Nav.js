@@ -11,10 +11,9 @@ const Nav = () => {
   useEffect(() => {
     setOption("basic");
   }, []);
-  return open === true ? (
-    <Sidebar />
-  ) : (
+  return (
     <>
+      <Sidebar />
       <NavOption />
       {option === "alarm" && open === false ? (
         <>

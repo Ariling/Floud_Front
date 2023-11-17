@@ -20,11 +20,21 @@ const MainCard = () => {
   const memoir_id = 12;
 
   const onCardClick = (memoirId) => {
-    router.push(`/memoir/${memoirId}`);
+    document.startViewTransition(() => {
+      router.push(`/memoir/${memoirId}`);
+    });
   };
 
   const onEditClick = (memoirId) => {
-    console.log("onEditClick :", memoirId);
+    document.startViewTransition(() => {
+      router.push(`/memoir/edit/${memoirId}`);
+    });
+  };
+
+  const onWriteClick = () => {
+    document.startViewTransition(() => {
+      router.push(`/memoir/write`);
+    });
   };
 
   const dayInfo = useRecoilValue(weeklyDayAtom);
@@ -82,7 +92,7 @@ const MainCard = () => {
             </div>
             <button
               className="my-[26px] h-[50px] w-[292px] rounded-[15px] bg-[#66A4FF] text-[20px] font-bold tracking-[-1.2px] text-white"
-              onClick={() => router.push(`/memoir/write`)}
+              onClick={onWriteClick}
             >
               회고록 작성하기
             </button>

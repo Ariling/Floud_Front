@@ -8,85 +8,85 @@ import AnonyRetro from "../../components/Anony/AnonyRetro";
 import AnonyCommentInsert from "../../components/Anony/AnonyCommentInsert";
 import { testData } from "./testData";
 import dayjs from "dayjs";
+import axios from 'axios';
 
 export default function AnnoyList() {
-  const [list, setList] = useState(testData);
-  const [isDetailOpen, setIsDetailOpen] = useState(false);
+	const [list, setList] = useState(testData);
+	const [isDetailOpen, setIsDetailOpen] = useState(false);
+	const [activeIndex, setActiveIndex] = useState(0);
 
-  const onDetailOpen = () => {
-    setIsDetailOpen(true);
-  };
+	const onDetailOpen = () => {
+		setIsDetailOpen(true);
+	};
 
-  const onDetailClose = () => {
-    setIsDetailOpen(false);
-  };
+	const onDetailClose = () => {
+		setIsDetailOpen(false);
+	};
 
-  const renderDetail = () => {
-    const item = list[selectedMemoirIdx];
-    const created = dayjs(item.created_at);
-    const date = created.format("DD");
-    const month = created.format("MMM");
+	const getAnonyList = () => {
+		axios.get(`/anony-memoir`)
+			.then(res => {
+				setList(res.data);
+			})
+	};
 
-    return (
-      <AnonyRetro
-        memoirId={item.memoir_id}
-        date={date}
-        month={`${month}.`}
-        todayTitle={item.title}
-        comments={item.comments}
-        totalLikes={item.total_like}
-        totalComments={item.total_comment}
-        onDetailOpen={() => onDetailOpen(index)}
-        onDetailClose={onDetailClose}
-        isDetail={isDetailOpen}
-      />
-    );
-  };
+	useEffect(() => {
+		getAnonyList();
+	}, [])
 
-  return (
-    <div className={"anonyList"}>
-      <div className={isDetailOpen ? "wrapper-detail" : "wrapper"}>
-        <Swiper
-          effect={"cards"}
-          // oneWayMovement={true}
-          grabCursor={true}
-          modules={[EffectCards]}
-          direction={"vertical"}
-          cardsEffect={{
-            perSlideOffset: 10,
-            rotate: false,
-            slideShadows: false,
-          }}
-          // className={swiperStyle.mySwiper}
-        >
-          {list.map((item, index) => {
-            const created = dayjs(item.created_at);
-            const date = created.format("DD");
-            const month = created.format("MMM");
+	return (
+		<div className={"anonyList"}>
+			<div className={isDetailOpen ? "wrapper-detail" : "wrapper"}>
+				<Swiper
+					effect={"cards"}
+					// oneWayMovement={true}
+					grabCursor={true}
+					modules={[EffectCards]}
+					direction={"vertical"}
+					cardsEffect={{
+						perSlideOffset: 10,
+						rotate: false,
+						slideShadows: false,
+					}}
+				// className={swiperStyle.mySwiper}
+					onActiveIndexChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+				>
+					{list.map((item, index) => {
+						const created = dayjs(item.created_at);
+						const date = created.format("DD");
+						const month = created.format("MMM");
 
-            return (
-              <>
-                <SwiperSlide key={index}>
-                  <div>
-                    <AnonyRetro
-                      memoirId={item.memoir_id}
-                      date={date}
-                      month={`${month}.`}
-                      todayTitle={item.title}
-                      comments={item.comments}
-                      totalLikes={item.total_like}
-                      totalComments={item.total_comment}
-                      onDetailOpen={onDetailOpen}
-                      onDetailClose={onDetailClose}
-                    />
-                  </div>
-                </SwiperSlide>
-              </>
-            );
-          })}
-        </Swiper>
-      </div>
-      <AnonyCommentInsert isDetail={isDetailOpen} />
-    </div>
-  );
+						return (
+							<>
+								<SwiperSlide key={index}>
+									<div>
+										<AnonyRetro
+											memoirId={item.memoir_id}
+											date={date}
+											month={`${month}.`}
+											todayTitle={item.title}
+											comments={item.comments}
+											totalLikes={item.total_like}
+											totalComments={item.total_comment}
+											memoirKeep={item.memoir_keep}
+											memoirProblem={item.memoir_prob}
+											memoirTry={item.memoir_try}
+											onDetailOpen={onDetailOpen}
+											onDetailClose={onDetailClose}
+										/>
+									</div>
+								</SwiperSlide>
+							</>
+						);
+					})}
+				</Swiper>
+			</div>
+			<AnonyCommentInsert 
+				userId={22}
+				memoirId={list[activeIndex].memoir_id}
+				isDetail={isDetailOpen}
+				getAnonyList={getAnonyList}
+			/>
+		</div>
+	);
 }
