@@ -13,7 +13,11 @@ export default function Sidebar() {
   const [open, setOpen] = useRecoilState(sidebarOpenAtom);
   const [option, setOption] = useRecoilState(sidebarShowAtom);
   return (
-    <div className={`absolute top-0 bg-white z-50 w-screen h-screen ${open ? style.s_bar_open : style.s_bar_close}`}>
+    <div
+      className={`fixed top-0 left-0 bg-white z-50 w-screen h-screen ${
+        open ? style.s_bar_open : style.s_bar_close
+      }`}
+    >
       {option === "basic" ? (
         <div className="pt-[23px]">
           <div

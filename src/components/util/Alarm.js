@@ -21,7 +21,7 @@ const Alarm = () => {
   return data.length !== 0 ? (
     <div className=" px-9 w-full h-screen flex flex-col justify-start items-center">
       {data.map((e) => (
-        <AlarmBox data={e} key={e.memori_id} />
+        <AlarmBox data={e} key={e.alarm_id} />
       ))}
     </div>
   ) : null;
