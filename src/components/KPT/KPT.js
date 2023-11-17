@@ -5,8 +5,12 @@ import style from '@/styles/KPTInsert.module.scss';
 import PopupModalBtn from "../util/PopupModalBtn";
 import { useEffect, useState } from 'react'
 import axios from "axios";
+import { useRouter } from 'next/router';
+import dayjs from 'dayjs';
 
 export default function KPT(){
+  const router = useRouter();
+  const [date, setDate] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [keepValue, setKeepValue] = useState('');
   const [problemValue, setProblemValue] = useState('');
@@ -40,19 +44,27 @@ export default function KPT(){
   }
   const onButtonClick = () => {
     axios.post(`/memoir`, {
-      inputValue: inputValue, 
-      keepValue: keepValue, 
-      problemValue: problemValue,
-      tryValue: tryValue,
-      tagValue1: tagValue1,
-      tagValue2: tagValue2,
-      tagValue3: tagValue3
+      user_id: 1, //수정 필요
+      title: inputValue,
+      place: '어딘가에서', //확인 필요
+      memoirKeep: keepValue,
+      memoirProblem: problemValue,
+      memoirTry: tryValue,
+      hashtag1: tagValue1,
+      hashtag2: tagValue2,
+      hashtag3: tagValue3,
     })
   }
+
+  useEffect(() => {
+    if (router.query.date) {
+      setDate(dayjs(router.query.date));
+    }
+  }, [router.query])
   return (
     <>
       <div className={style.kpt}>
-        <KPTInput value={inputValue} onChange={onInputChange} date={'2023-08-22'} />
+        <KPTInput value={inputValue} onChange={onInputChange} date={date} />
 
         <div className={style.keep}>
             <div>KEEP</div>

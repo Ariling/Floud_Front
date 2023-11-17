@@ -12,7 +12,7 @@ export default function AnnoyComment({isDetail, memoirId, userId, getAnonyList})
 	}
 
 	const onArrowClick = () => {
-		axios.post(`/comment/${memoirId}/${userId}`)
+		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/comment/${memoirId}/${userId}`)
 		.then(res => {
 			getAnonyList();
 		})

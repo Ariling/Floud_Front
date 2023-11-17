@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
       router.pathname === "/waiting" ||
       router.pathname === "/login" ||
       router.pathname === "/signup" ||
-      router.pathname === "/memoir/[...memoirId]"
+      router.pathname === "/memoir/[memoirId]"
       ? null : (
         <Nav />
       )}

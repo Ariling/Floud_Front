@@ -17,7 +17,7 @@ const MainCard = () => {
   const date = 16;
   const month = "Oct";
   const title = "알잘딱깔센 알찬 하루 보냈다.";
-  const memoir_id = 12;
+  const memoir_id = 1;
 
   const onCardClick = (memoirId) => {
     document.startViewTransition(() => {
@@ -33,7 +33,7 @@ const MainCard = () => {
 
   const onWriteClick = () => {
     document.startViewTransition(() => {
-      router.push(`/memoir/write`);
+      router.push(`/memoir/write/${dayInfo.dayDataFormat}`);
     });
   };
 

@@ -5,8 +5,10 @@ import style from '@/styles/KPTInsert.module.scss';
 import PopupModalBtn from "../util/PopupModalBtn";
 import { useEffect, useState } from 'react'
 import axios from "axios";
+import dayjs from 'dayjs';
 
-export default function KPTEdit({memoirId}){
+export default function KPTEdit({ memoirId }) {
+  const [date, setDate] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [keepValue, setKeepValue] = useState('');
   const [problemValue, setProblemValue] = useState('');
@@ -15,23 +17,28 @@ export default function KPTEdit({memoirId}){
   const [tagValue2, setTagValue2] = useState('');
   const [tagValue3, setTagValue3] = useState('');
 
-  useEffect (() => {
-    axios.get(`/memoir/${memoirId}`)
-    .then(res => {
-      setInputValue(res.data.inputValue);
-      setKeepValue(res.data.keepValue);
-      setProblemValue(res.data.problemValue);
-      setTryValue(res.data.tryValue);
-      setTagValue1(res.data.tagValue1);
-      setTagValue2(res.data.tagValue2);
-      setTagValue3(res.data.tagValue3);
-    })
-  },[])
+  useEffect(() => {
+    if (memoirId) {
+      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/${memoirId}`)
+        .then(res => {
+          const data = res.data.data;
+          const day = dayjs(data.createdAt);
+          setDate(day.format("YYYY-MM-DD"));
+          setInputValue(data.title);
+          setKeepValue(data.memoirKeep);
+          setProblemValue(data.memoirProblem);
+          setTryValue(data.memoirTry);
+          setTagValue1(data.tagValue1);
+          setTagValue2(data.tagValue2);
+          setTagValue3(data.tagValue3);
+        })
+    }
+  }, [memoirId])
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
   }
-  
+
   const onKeepChange = (e) => {
     setKeepValue(e.target.value);
   }
@@ -52,48 +59,50 @@ export default function KPTEdit({memoirId}){
     setTagValue3(e.target.value)
   }
   const onButtonClick = () => {
-    axios.patch(`/memoir`, {
-      memoirId: memoirId,
-      inputValue: inputValue, 
-      keepValue: keepValue, 
-      problemValue: problemValue,
-      tryValue: tryValue,
-      tagValue1: tagValue1,
-      tagValue2: tagValue2,
-      tagValue3: tagValue3
+    axios.patch(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/edit/${memoirId}`, {
+      userId: 1,
+      title: inputValue,
+      memoirKeep: keepValue,
+      memoirProblem: problemValue,
+      memoirTry: tryValue,
+      // tagValue1: tagValue1,
+      // tagValue2: tagValue2,
+      // tagValue3: tagValue3
     })
   }
   return (
     <>
-      <div className={style.kpt}>
-        <KPTInput value={inputValue} onChange={onInputChange} date={'2023-08-22'} />
+      {date &&
+        <div className={style.kpt}>
+          <KPTInput value={inputValue} onChange={onInputChange} date={date} />
 
-        <div className={style.keep}>
+          <div className={style.keep}>
             <div>KEEP</div>
-        </div>
-        <KPTInsert type={'KEEP'} value={keepValue} onChange={onKeepChange}/>
-        
-        <div className={style.problem}>
+          </div>
+          <KPTInsert type={'KEEP'} value={keepValue} onChange={onKeepChange} />
+
+          <div className={style.problem}>
             <div>PROBLEM</div>
-        </div>
-        <KPTInsert type={'PROBLEM'} value={problemValue} onChange={onProblemChange}/>
-       
-        <div className={style.keep}>
+          </div>
+          <KPTInsert type={'PROBLEM'} value={problemValue} onChange={onProblemChange} />
+
+          <div className={style.keep}>
             <div>TRY</div>
+          </div>
+          <KPTInsert type={'TRY'} value={tryValue} onChange={onTryChange} />
+          <KPTTag
+            value1={tagValue1}
+            value2={tagValue2}
+            value3={tagValue3}
+            onChange1={onTagChange1}
+            onChange2={onTagChange2}
+            onChange3={onTagChange3}
+          />
+          <PopupModalBtn
+            onButtonClick={onButtonClick}
+          />
         </div>
-        <KPTInsert type={'TRY'} value={tryValue} onChange={onTryChange}/>
-        <KPTTag 
-          value1={tagValue1} 
-          value2={tagValue2}
-          value3={tagValue3} 
-          onChange1={onTagChange1}
-          onChange2={onTagChange2}
-          onChange3={onTagChange3}
-        />
-        <PopupModalBtn 
-          onButtonClick={onButtonClick}
-        />
-      </div>
+      }
     </>
   )
 }
