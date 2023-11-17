@@ -13,7 +13,7 @@ const NavOption = () => {
   const router = useRouter();
   return (
     <>
-      <div className="bg-white z-50 h-[83.5px] w-[100vw] flex items-center justify-between px-[8vw] pt-9 pb-[18px] sticky top-0 left-0 border-b border-black">
+      <div className="bg-white z-40 h-[83.5px] w-[100vw] flex items-center justify-between px-[8vw] pt-9 pb-[18px] sticky top-0 left-0 border-b border-black">
         <div
           className="h-[30px]"
           onClick={() => {

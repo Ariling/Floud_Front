@@ -12,7 +12,7 @@ const PopupModalBtn = () => {
   return (
     <div className={style.submit_bt} onClick={modalClick}>
       <button type="submit">작성완료</button>
-      {modalOpen && <PopupModal />}
+      <PopupModal />
     </div>
   );
 };
