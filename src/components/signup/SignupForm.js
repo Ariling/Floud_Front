@@ -5,9 +5,7 @@ import { useForm } from "react-hook-form";
 import SingupDate from "./SingupDate";
 import { useRecoilValue } from "recoil";
 import { signupDayAtom } from "@/store/atoms";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { SignupApi } from "@/apis/signup";
 
 const SignupForm = () => {
   const dateform = useRecoilValue(signupDayAtom);
@@ -19,13 +17,22 @@ const SignupForm = () => {
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
-    //생년월일 잘 찍힘
-    console.log(`${dateform.year}-${dateform.month}-${dateform.day}`);
-    alert("회원가입성공");
-    // router.replace("/");
+    const result = await SignupApi(
+      watch("email"),
+      watch("password"),
+      watch("nickname"),
+      watch("phonenumber"),
+      `${dateform.year}-${dateform.month}-${dateform.day}`
+    );
+    if (result === false) {
+      alert("회원가입 오류입니다. 다시 진행해주세요");
+    } else {
+      alert("회원가입성공");
+      router.replace("/");
+    }
   };
   return (
-    <form onSubmit={onSubmit} className={`pl-6 pr-[26px] ${inter.className}`}>
+    <form onSubmit={onSubmit} className={`pl-6 pr-[26px]`}>
       <div className="logininputwrap">
         <div className="logintext">Username</div>
         <input
@@ -51,7 +58,7 @@ const SignupForm = () => {
       <div className="logininputwrap">
         <div className="logintext">Password</div>
         <input
-          placeholder="비밀번호를 입력해주세요"
+          placeholder="영문+숫자+특수문자 8자 이상"
           type="password"
           id="userPw"
           className="logininput"
