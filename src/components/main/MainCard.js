@@ -8,12 +8,8 @@ import { testData } from "./testData.js";
 import writeCloud from "@/img/main/writeCloud.png";
 import notWriteCloud from "@/img/main/notWriteCloud.png";
 import Image from "next/image.js";
-import PostCard from "./PostCard.js";
 import MyRetroList from "@/components/Retro/MyRetroList";
 import { useRouter } from "next/router";
-import { Noto_Sans_KR } from "next/font/google";
-
-const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const MainCard = () => {
   const router = useRouter();
@@ -64,7 +60,7 @@ const MainCard = () => {
   return (
     <>
       <div
-        className={`w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center ${noto.className}`}
+        className={`w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center`}
       >
         {(useCheckRetroTime(dayInfo.dayDataFormat) ||
           dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat) &&

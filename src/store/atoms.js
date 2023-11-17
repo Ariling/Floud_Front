@@ -43,3 +43,23 @@ export const LikeandCommentCurrentday = atom({
   key: "likeandcommentday",
   default: dayjs(),
 });
+
+export const AlarmDataAtom = atom({
+  key: "alarmData",
+  default: [],
+});
+
+export const GetMyLikeDataAtom = atom({
+  key: "getMyLikeData",
+  default: [],
+});
+
+export const GetMyCommentDataAtom = atom({
+  key: "getMyCommentData",
+  default: [],
+});
+
+export const UserIdAtom = atom({
+  key: "userIdAtom",
+  default: 0,
+});
