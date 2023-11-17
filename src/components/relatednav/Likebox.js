@@ -20,7 +20,7 @@ const Likebox = () => {
   const getMyLikeFunc = async (user_id) => {
     const result = await getMylikeApi(user_id, currentMonth);
     if (result !== false) {
-      setData(result.data);
+      setData(result.data.data);
     }
   };
   useEffect(() => {
@@ -29,7 +29,7 @@ const Likebox = () => {
   //현재는 이렇게 해 둔 상태 나중에 바꿀 예정... 근데 이거 좋아요 취소되면 어떻게 되는거?
   //여기가 이제 id대신 memori_id, title, created_at을 활용
   //memoir_like_id는 보내줄 때 활용하는 것으로 보임
-  return data.length !== 0 ? (
+  return Array.isArray(data) && data.length !== 0 ? (
     <div>
       {data.map((e) => (
         <>
@@ -42,7 +42,7 @@ const Likebox = () => {
                 setData(newData);
               }}
             >
-              {e.like === true ? <LikeHeart /> : <BlankHeart />}
+              <LikeHeart />
             </div>
             <div className="px-[22px] w-full flex absolute top-[30%] flex-col">
               <div className="ml-[7px] flex gap-[25px] text-[22px] font-extrabold tracking-[-1.2px] leading-[110%]">

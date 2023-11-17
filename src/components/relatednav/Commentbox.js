@@ -20,15 +20,18 @@ const Commentbox = () => {
   //여기도 그냥... memori_id, title, created_at(format필요), content로 이루어질 듯..?
   //memori_id로 이동하나보다 여기서는..
   const getMyCommentFunc = async (user_id) => {
-    const result = await getMyCommentApi(user_id, currentMonth.format());
+    const result = await getMyCommentApi(
+      user_id,
+      currentMonth.format("YYYY-MM-DDTHH:mm:ss")
+    );
     if (result !== false) {
-      setData(result);
+      setData(result.data.data);
     }
   };
   useEffect(() => {
     getMyCommentFunc(1);
   }, [currentMonth]);
-  return data.length !== 0 ? (
+  return Array.isArray(data) && data.length !== 0 ? (
     <div>
       {data.map((e) => (
         <>

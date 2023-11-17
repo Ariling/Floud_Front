@@ -12,13 +12,13 @@ const Alarm = () => {
   const AlarmFunc = async (user_id) => {
     const result = await AlarmApi(user_id);
     if (result !== false) {
-      setData(result.data);
+      setData(result.data.data);
     }
   };
   useEffect(() => {
     AlarmFunc(user_id);
   }, []);
-  return data.length !== 0 ? (
+  return Array.isArray(data) && data.length !== 0 ? (
     <div className=" px-9 w-full h-screen flex flex-col justify-start items-center">
       {data.map((e) => (
         <AlarmBox data={e} key={e.alarm_id} />
