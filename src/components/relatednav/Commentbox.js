@@ -14,6 +14,7 @@ import {
   UserIdAtom,
 } from "@/store/atoms";
 import { getMyCommentApi } from "@/apis/relatednav";
+import style from "@/styles/Alarm.module.scss";
 
 const inter = Inter({ subsets: ["latin"] });
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
@@ -36,7 +37,7 @@ const Commentbox = () => {
     }
   };
   useEffect(() => {
-    getMyCommentFunc(userId);
+    getMyCommentFunc(userId.user_id);
   }, [currentMonth]);
   return Array.isArray(data) && data.length !== 0 ? (
     <div>
@@ -72,7 +73,9 @@ const Commentbox = () => {
                 <div>
                   <TestCloud />
                 </div>
-                <div className=" font-light text-[16px] tracking-[-0.965px]">
+                <div
+                  className={`font-light text-[16px] tracking-[-0.965px] ${style.textoverflow}`}
+                >
                   {e.content}
                 </div>
               </div>

@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { max, select } from "d3";
+import { useRecoilValue } from "recoil";
+import { DailyMainAtom } from "@/store/atoms";
 
-const D3ChartInfo = ({ data }) => {
+const D3ChartInfo = () => {
+  const tagData = useRecoilValue(DailyMainAtom);
+  const data = tagData.hashtagList;
   useEffect(() => {
     select("#chart").select("svg").remove();
     // D3를 사용하여 데이터 시각화 로직을 작성합니다.
@@ -43,7 +47,7 @@ const D3ChartInfo = ({ data }) => {
       .attr("x", 10)
       .attr("y", (d, i) => i * 40 + 25)
       .attr("fill", "#fff");
-  }, []);
+  }, [data]);
 
   return (
     <div

@@ -66,7 +66,7 @@ export default function KPTEdit({ memoirId }) {
     axios.patch(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/edit/${memoirId}`,
       {
-        userId: userId,
+        userId: userId.user_id,
         title: inputValue,
         place: "어딘가에서",
         memoirKeep: keepValue,

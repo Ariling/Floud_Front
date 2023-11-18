@@ -15,7 +15,7 @@ const AlarmBox = ({ data }) => {
     >
       <div className="w-[46px] h-[46px] border-[1px] border-[#E5E5E5] rounded-[50%] relative">
         <div className="absolute top-[30%] left-[30%]">
-          {data.type === "like" ? <AlarmHeart /> : <AlarmComment />}
+          {data.type === "comment" ? <AlarmComment /> : <AlarmHeart />}
         </div>
       </div>
       <div className="h-auto w-[65vw]">
@@ -23,10 +23,10 @@ const AlarmBox = ({ data }) => {
           익명회고 <p className="text-[#ADADAD] font-light">{day}</p>
         </div>
         <div className={style.textoverflow}>
-          {data.type === "like" ? (
-            <>새로운 공감이 달렸어요 : {data.title}</>
+          {data.type === "comment" ? (
+            <>새로운 댓글이 달렸어요 : {data.content}</>
           ) : (
-            <>새로운 댓글이 달렸어요 : {data.title}</>
+            <>새로운 공감이 달렸어요 : {data.title}</>
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import useCheckRetroTime from "@/hooks/useCheckRetroTime";
-import { DailyMainAtom, weeklyDayAtom } from "@/store/atoms";
+import { DailyMainAtom, UserIdAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 const MainCard = () => {
   const router = useRouter();
   const dailyData = useRecoilValue(DailyMainAtom);
+  const user = useRecoilValue(UserIdAtom);
 
   const onCardClick = (memoirId) => {
     document.startViewTransition(() => {
@@ -124,7 +125,7 @@ const MainCard = () => {
             <div className="text-center mt-2 font-[350] text-lg tracking-[-1.08px] mb-[26px]">
               오늘도 비행운을 남겨주셨네요.
               <br />
-              민지님의 성장을 응원해요
+              {user.username}님의 성장을 응원해요
             </div>
           </>
         )}

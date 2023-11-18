@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { LikeTestData } from "./LikeTestData";
 import likebox from "@/img/nav/likebox.png";
 import Image from "next/image";
 import LikeHeart from "@/img/nav/likeheart.svg";
-import BlankHeart from "@/img/nav/blanklikeheart.svg";
 import dayjs from "dayjs";
 import { Noto_Sans_KR } from "next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -13,6 +11,7 @@ import {
   UserIdAtom,
 } from "@/store/atoms";
 import { getMylikeApi } from "@/apis/relatednav";
+import style from "@/styles/Alarm.module.scss";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
@@ -32,7 +31,7 @@ const Likebox = () => {
     }
   };
   useEffect(() => {
-    getMyLikeFunc(userId);
+    getMyLikeFunc(userId.user_id);
   }, [currentMonth]);
   //현재는 이렇게 해 둔 상태 나중에 바꿀 예정... 근데 이거 좋아요 취소되면 어떻게 되는거?
   //여기가 이제 id대신 memori_id, title, created_at을 활용
@@ -57,7 +56,9 @@ const Likebox = () => {
                 <div className="text-[34px] tracking-[-2.073px] leading-[22.215px]">
                   {dayjs(e.createdAt).format("DD")}
                 </div>
-                <div className={`${noto.className}`}>{e.title}</div>
+                <div className={`${style.textoverflow} ${noto.className}`}>
+                  {e.title}
+                </div>
               </div>
             </div>
           </div>
