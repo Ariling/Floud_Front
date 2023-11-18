@@ -16,7 +16,8 @@ export default function AnnoyList() {
 	const [list, setList] = useState(testData);
 	const [isDetailOpen, setIsDetailOpen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(0);
-	const userId = useRecoilValue(UserIdAtom);
+	const user = useRecoilValue(UserIdAtom);
+	const userId = user.user_id;
 
 	const onDetailOpen = () => {
 		setIsDetailOpen(true);

@@ -47,7 +47,7 @@ export default function KPT() {
   };
   const onButtonClick = () => {
     axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir`, {
-      user_id: userId, //수정 필요
+      user_id: userId.user_id,
       title: inputValue,
       place: "어딘가에서", //확인 필요
       createdAt: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
