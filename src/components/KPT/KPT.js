@@ -5,10 +5,10 @@ import style from "@/styles/KPTInsert.module.scss";
 import PopupModalBtn from "../util/PopupModalBtn";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
-import dayjs from "dayjs";
-import { useRecoilValue } from "recoil";
-import { UserIdAtom } from "@/store/atoms";
+import { useRouter } from 'next/router';
+import dayjs from 'dayjs';
+import { useRecoilValue } from 'recoil';
+import { UserIdAtom } from '@/store/atoms';
 
 export default function KPT() {
   const router = useRouter();
@@ -57,6 +57,7 @@ export default function KPT() {
       hashtag1: tagValue1,
       hashtag2: tagValue2,
       hashtag3: tagValue3,
+      createdAt: date,
     });
   };
 

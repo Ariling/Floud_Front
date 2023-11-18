@@ -1,5 +1,4 @@
 .retro {
- 
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -37,11 +36,20 @@
 }
 
 .todayTitle {
-    width: 220px;
+    width: 350px;
     font-weight: 600;
     font-size: 46px;
     text-align: start;
     word-break: keep-all;
+}
+
+.todayTitleList {
+    height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .arrow {
@@ -186,4 +194,8 @@ from {
 to {
     border-radius: 20px 20px 0 0;
 }
+}
+
+.heartFill{
+    fill: black
 }
