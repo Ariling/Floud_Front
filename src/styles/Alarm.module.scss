@@ -8,3 +8,23 @@
   font-weight: 350;
   letter-spacing: -0.84px;
 }
+
+.titleoverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  letter-spacing: -2.073px;
+  line-height: 22.215px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.liketextoverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

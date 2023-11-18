@@ -1,21 +1,32 @@
-import { weeklyDayAtom } from "@/store/atoms";
+import { DailyMainAtom, UserIdAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import MainCard from "./MainCard";
 import D3ChartInfo from "./D3ChartInfo";
 import PrevweekBtn from "@/img/main/prevweek.svg";
 import NextweekBtn from "@/img/main/nextweek.svg";
+import { GetMainApi } from "@/apis/main";
 
 const Weeklydate = () => {
+  const [data, setData] = useRecoilState(DailyMainAtom);
+  const resetData = useResetRecoilState(DailyMainAtom);
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);
-  const dataSet = [
-    { name: "운동하기", num: 7 },
-    { name: "요리하기", num: 6 },
-    { name: "공부하기", num: 2 },
-  ];
+  const userId = useRecoilValue(UserIdAtom);
+  const getMainFunc = async (user_id) => {
+    const result = await GetMainApi(user_id, daySelect.daySelectFormat);
+    if (result !== false) {
+      setData(result.data.data);
+    } else {
+      resetData();
+    }
+  };
+  useEffect(() => {
+    getMainFunc(userId.user_id);
+  }, [daySelect]);
+
   const handleNextWeek = () => {
     setCurrentDay(currentDay.add(1, "week"));
   };
@@ -36,8 +47,8 @@ const Weeklydate = () => {
       monthShow: date.format("MM"),
       dayShow: date.format("D"),
       monthSee: date.format("MMM"),
-      yearShow: date.format("YYYY"),
       dayDataFormat: date.format("YYYY-MM-DD"),
+      daySelectFormat: date.format("YYYY-MM-DDTHH:mm:ss"),
     });
   };
   useEffect(() => {
@@ -90,7 +101,7 @@ const Weeklydate = () => {
       <div className="mb-[15px] text-base tracking-[-0.9px] font-[350]">
         Q. 하고싶었지만 하지못해 아쉬웠던 것은?
       </div>
-      <D3ChartInfo data={dataSet} />
+      <D3ChartInfo />
     </>
   );
 };

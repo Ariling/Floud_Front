@@ -12,7 +12,7 @@ import Char7 from "../../img/svg/Group 36.svg";
 import Char8 from "../../img/svg/Group 37.svg";
 import useArrayShuffle from "@/hooks/useArrayShuffle";
 
-export default function AnnoyComment({ comments, totalLikes, totalComments }) {
+export default function AnnoyComment({ comments, totalLikes, totalComments, onLikeClick, isLiked }) {
   const charArray = [
     () => <Char1 className={style.commentImg} />,
     () => <Char2 className={style.commentImg} />,
@@ -33,7 +33,7 @@ export default function AnnoyComment({ comments, totalLikes, totalComments }) {
     <>
       <div className={`${style.row} ${style.heartComment}`}>
         <div className={style.row}>
-          <Heart className={style.heart} />
+          {isLiked ? <Heart className={style.heartFill} /> : <Heart onClick={onLikeClick} className={style.heart} />}
           <div className={style.count}>{totalLikes}</div>
         </div>
         <div className={style.row}>
@@ -47,7 +47,7 @@ export default function AnnoyComment({ comments, totalLikes, totalComments }) {
             <div className={style.comment} key={index}>
               <div>{renderCharImg(index)}</div>
               <div>
-                <div>{value}</div>
+                <div>{value.content}</div>
               </div>
             </div>
           );

@@ -18,6 +18,11 @@ export default function AnnoyRetro({
   totalComments,
   onDetailOpen,
   onDetailClose,
+  memoirKeep,
+  memoirProblem,
+  memoirTry,
+  onLikeClick,
+  isLiked,
 }) {
   const [isDetail, setIsDetail] = useState(false);
   const swiper = useSwiper();
@@ -50,7 +55,8 @@ export default function AnnoyRetro({
         <div className={style.date}>{date}</div>
         <div className={style.month}>{month}</div>
       </div>
-      <div className={style.todayTitle}>{todayTitle}</div>
+      <div className={`${style.todayTitle} ${isDetail ? '' : style.todayTitleList}`}>{todayTitle}</div>
+      
       {isDetail && (
         <>
           <div>
@@ -58,27 +64,27 @@ export default function AnnoyRetro({
               <div>KEEP</div>
             </div>
             <div className={style.text}>
-              오늘의 회고입니당 오늘의 회고입니당 오늘의 회고입니당 오늘의
-              회고입니당
+              {memoirKeep}
             </div>
 
             <div className={style.problem}>
               <div>PROBLEM</div>
             </div>
-            <div className={style.text}>오늘의 회고입니당</div>
+            <div className={style.text}>{memoirProblem}</div>
 
             <div className={style.keep}>
               <div>TRY</div>
             </div>
             <div className={style.text}>
-              오늘의 회고입니당 오늘의 회고입니당 오늘의 회고입니당 오늘의
-              회고입니당
+              {memoirTry}
             </div>
           </div>
           <AnnoyComment
             comments={comments}
             totalLikes={totalLikes}
             totalComments={totalComments}
+            onLikeClick={onLikeClick}
+            isLiked={isLiked}
           />
         </>
       )}

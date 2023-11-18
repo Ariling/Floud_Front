@@ -11,14 +11,13 @@ const Nav = () => {
   useEffect(() => {
     setOption("basic");
   }, []);
-  return open === true ? (
-    <Sidebar />
-  ) : (
+  return (
     <>
+      <Sidebar />
       <NavOption />
       {option === "alarm" && open === false ? (
         <>
-          <div className="fixed top-0 bg-white z-50 w-screen h-screen">
+          <div className="fixed top-0 bg-white z-50 w-screen h-screen overflow-y-scroll">
             <NavOption />
             <Alarm />
           </div>

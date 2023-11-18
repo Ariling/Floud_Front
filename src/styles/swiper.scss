@@ -7,7 +7,7 @@
 }
 
 .wrapper {
-  height: 400px;
+  height: 430px;
   animation-name: detail-close;
   animation-duration: 1s;
 }
@@ -20,7 +20,7 @@
 
 @keyframes detail-open {
   from {
-    height: 400px;
+    height: 430px;
   }
 
   to {
@@ -34,7 +34,7 @@
   }
 
   to {
-    height: 400px;
+    height: 430px;
   }
 }
 
@@ -59,7 +59,6 @@
     border-radius: 0 0 20px 20px;
     animation-name: detail-close-border;
     animation-duration: 1s;
-
   }
 }
 

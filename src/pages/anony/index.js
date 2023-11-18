@@ -2,7 +2,7 @@
 import AnonyList from '../../components/Anony/AnonyList';
 
 const index = () => {
-
+  
   return (
     <div className='test'>
       <AnonyList/>

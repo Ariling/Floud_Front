@@ -31,7 +31,7 @@ const SingupDate = () => {
       <select
         value={form.year}
         onChange={(e) => setForm({ ...form, year: e.target.value })}
-        className="w-1/3 h-10 text-center"
+        className="w-1/5 h-10 text-center bg-transparent"
       >
         {years.map((item) => (
           <option value={item} key={item}>
@@ -42,7 +42,7 @@ const SingupDate = () => {
       <select
         value={form.month}
         onChange={(e) => setForm({ ...form, month: e.target.value })}
-        className="w-1/5 h-10 text-right pr-2"
+        className="w-1/5 h-10 text-right pr-2 bg-transparent"
       >
         {months.map((item) => (
           <option value={item} key={item}>
@@ -53,7 +53,7 @@ const SingupDate = () => {
       <select
         value={form.day}
         onChange={(e) => setForm({ ...form, day: e.target.value })}
-        className="w-1/5 h-10 text-right pr-2"
+        className="w-1/5 h-10 text-right pr-2 bg-transparent"
       >
         {days.map((item) => (
           <option value={item} key={item}>
