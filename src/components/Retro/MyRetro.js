@@ -21,7 +21,7 @@ export default function MyRetro({
     tag3,
 }) {
     const router = useRouter();
-    const colors = [ '#c8f5ff', '#bdd4ff', '#a1d8ff', '#c3d0ea'];
+    const colors = [ '#c8f5ff', '#bdd4ff', '#a1d8ff', '#DCE8FF'];
     const colorIndex = date%4;
 
     const onBackClick = () => {
