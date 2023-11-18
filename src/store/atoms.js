@@ -81,7 +81,10 @@ const localStorageEffect =
 
 export const UserIdAtom = atom({
   key: "userIdAtom",
-  default: 0,
+  default: {
+    user_id: 0,
+    username: "",
+  },
   //Atom, LocalStorage 자동연동
   effects: [localStorageEffect("userIdAtom")],
 });

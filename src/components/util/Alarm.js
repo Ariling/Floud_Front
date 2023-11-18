@@ -18,7 +18,7 @@ const Alarm = () => {
     }
   };
   useEffect(() => {
-    AlarmFunc(user_id);
+    AlarmFunc(user_id.user_id);
   }, []);
   return Array.isArray(data) && data.length !== 0 ? (
     <div className=" px-9 w-full h-screen flex flex-col justify-start items-center">

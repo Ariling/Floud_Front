@@ -11,7 +11,6 @@ import { GetMainApi } from "@/apis/main";
 const Weeklydate = () => {
   const [data, setData] = useRecoilState(DailyMainAtom);
   const resetData = useResetRecoilState(DailyMainAtom);
-  const dataSet = data.hashtagList;
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);
@@ -26,7 +25,7 @@ const Weeklydate = () => {
     console.log(data);
   };
   useEffect(() => {
-    getMainFunc(userId);
+    getMainFunc(userId.user_id);
   }, [daySelect]);
 
   // const dataSet = [
@@ -108,7 +107,7 @@ const Weeklydate = () => {
       <div className="mb-[15px] text-base tracking-[-0.9px] font-[350]">
         Q. 하고싶었지만 하지못해 아쉬웠던 것은?
       </div>
-      <D3ChartInfo data={dataSet} />
+      <D3ChartInfo />
     </>
   );
 };
