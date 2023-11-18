@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import MyMemoir from "@/components/KPT/MyMemoir";
 
 const index = () => {
