@@ -83,7 +83,7 @@ export const UserIdAtom = atom({
   key: "userIdAtom",
   default: 0,
   //Atom, LocalStorage 자동연동
-  effects: [localStorageEffect("userId")],
+  effects: [localStorageEffect("userIdAtom")],
 });
 
 export const DailyMainAtom = atom({

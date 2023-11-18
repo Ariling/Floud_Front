@@ -4,18 +4,16 @@ import style from '../../styles/Anony.module.scss';
 import Image from 'next/image';
 import CommentArrow from '../../img/svg/arrowBlack.svg';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
-export default function AnnoyComment({isDetail, memoirId, userId, getAnonyList}) {
+export default function AnnoyComment({isDetail, onCommentWrite}) {
 	const [comment, setComment] = useState('');
 	const onCommentChange = (e) => {
 		setComment(e.target.value);
 	}
 
 	const onArrowClick = () => {
-		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/comment/${memoirId}/${userId}`)
-		.then(res => {
-			getAnonyList();
-		})
+		onCommentWrite(comment);
 	}
 	return (
 		<div className={`${style.commentInput} ${style.row} ${isDetail ? style.commentInputDetail : ''}`}>

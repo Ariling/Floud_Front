@@ -26,11 +26,54 @@ export default function AnnoyList() {
 		setIsDetailOpen(false);
 	};
 
+	const onLikeClick = (index) => {
+		setList(org => org.map((v, i) => {
+			if (index === i) {
+				return {
+					...v,
+					isLiked: true,
+					likeCount: v.likeCount+1,
+				}
+			}
+
+			return v;
+		}));
+		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/like`, {
+			user_id: userId,
+			memoir_id: list[index].memoir_id,
+			likeDate: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
+		})
+	}
+
+	const onCommentWrite = (comment) => {
+		axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/comment`, {
+			memoir_id: list[activeIndex].memoir_id,
+			user_id: userId,
+			createdAt: dayjs().format('YYYY-MM-DDTHH:mm:ss'),
+			content: comment,
+			parent_id: null,
+		})
+		.then(res => {
+			setList(org => org.map((v, i) => {
+				if (activeIndex === i) {
+					return {
+						...v,
+						commentList: [
+							...v.commentList,
+							{content: comment}
+						]
+					}
+				}
+	
+				return v;
+			}));
+		})
+	}
+
 	const getAnonyList = () => {
-		// userId 수정 필요
-		axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/anonymous/1`)
+		axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/anonymous/${userId}`)
 			.then(res => {
-				setList(res.data);
+				setList(res.data.data);
 			})
 	};
 
@@ -56,7 +99,7 @@ export default function AnnoyList() {
 					onActiveIndexChange={(swiper) => setActiveIndex(swiper.activeIndex)}
 				>
 					{list.map((item, index) => {
-						const created = dayjs(item.created_at);
+						const created = dayjs(item.createdAtq);
 						const date = created.format("DD");
 						const month = created.format("MMM");
 
@@ -69,14 +112,16 @@ export default function AnnoyList() {
 											date={date}
 											month={`${month}.`}
 											todayTitle={item.title}
-											comments={item.comments}
-											totalLikes={item.total_like}
-											totalComments={item.total_comment}
-											memoirKeep={item.memoir_keep}
-											memoirProblem={item.memoir_prob}
-											memoirTry={item.memoir_try}
+											comments={item.commentList}
+											totalLikes={item.likeCount}
+											totalComments={item.commentCount}
+											memoirKeep={item.memoirKeep}
+											memoirProblem={item.memoirProblem}
+											memoirTry={item.memoirTry}
 											onDetailOpen={onDetailOpen}
 											onDetailClose={onDetailClose}
+											onLikeClick={() => onLikeClick(index)}
+											isLiked={item.isLiked}
 										/>
 									</div>
 								</SwiperSlide>
@@ -86,10 +131,8 @@ export default function AnnoyList() {
 				</Swiper>
 			</div>
 			<AnonyCommentInsert 
-				userId={22}
-				memoirId={list[activeIndex].memoir_id}
 				isDetail={isDetailOpen}
-				getAnonyList={getAnonyList}
+				onCommentWrite={onCommentWrite}
 			/>
 		</div>
 	);

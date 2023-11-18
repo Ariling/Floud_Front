@@ -7,9 +7,12 @@ import { useEffect, useState } from 'react'
 import axios from "axios";
 import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
+import { useRecoilValue } from 'recoil';
+import { UserIdAtom } from '@/store/atoms';
 
 export default function KPT(){
   const router = useRouter();
+  const userId = useRecoilValue(UserIdAtom);
   const [date, setDate] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [keepValue, setKeepValue] = useState('');
@@ -43,8 +46,8 @@ export default function KPT(){
     setTagValue3(e.target.value)
   }
   const onButtonClick = () => {
-    axios.post(`/memoir`, {
-      user_id: 1, //수정 필요
+    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir`, {
+      user_id: userId, //수정 필요
       title: inputValue,
       place: '어딘가에서', //확인 필요
       memoirKeep: keepValue,
@@ -53,6 +56,7 @@ export default function KPT(){
       hashtag1: tagValue1,
       hashtag2: tagValue2,
       hashtag3: tagValue3,
+      createdAt: date,
     })
   }
 
