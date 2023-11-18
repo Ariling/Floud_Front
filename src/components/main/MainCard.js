@@ -15,8 +15,6 @@ const MainCard = () => {
   const router = useRouter();
   const dailyData = useRecoilValue(DailyMainAtom);
   // test용 data
-  const date = 16;
-  const month = "Oct";
   const title = "알잘딱깔센 알찬 하루 보냈다.";
   const memoir_id = 1;
 
@@ -75,7 +73,7 @@ const MainCard = () => {
       >
         {(useCheckRetroTime(dayInfo.dayDataFormat) ||
           dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat) &&
-        data.length === 0 ? (
+        (dailyData.memoir_id === 0 || dailyData.length === 0) ? (
           <>
             <div className="mt-[35px] w-[147px] h-[117.521px]">
               <Image src={notWriteCloud} alt="작성불가구름" />
@@ -98,7 +96,7 @@ const MainCard = () => {
               회고록 작성하기
             </button>
           </>
-        ) : data.length === 0 ? (
+        ) : dailyData.memoir_id === 0 || dailyData.length === 0 ? (
           <>
             <div className="mt-[35px] w-[147px] h-[117.521px]">
               <Image src={notWriteCloud} alt="작성불가구름" />
@@ -137,8 +135,8 @@ const MainCard = () => {
       {/* 해당 부분은 나중에 위쪽으로 옮겨질 예정 */}
       <MyRetroList
         memoirId={memoir_id}
-        date={date}
-        month={`${month}.`}
+        date={dayInfo.dayShow}
+        month={dayInfo.monthSee}
         todayTitle={title}
         onCardClick={onCardClick}
         onEditClick={onEditClick}
