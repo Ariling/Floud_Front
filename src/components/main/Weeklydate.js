@@ -1,7 +1,7 @@
 import { DailyMainAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useResetRecoilState } from "recoil";
 import MainCard from "./MainCard";
 import D3ChartInfo from "./D3ChartInfo";
 import PrevweekBtn from "@/img/main/prevweek.svg";
@@ -10,6 +10,8 @@ import { GetMainApi } from "@/apis/main";
 
 const Weeklydate = () => {
   const [data, setData] = useRecoilState(DailyMainAtom);
+  const resetData = useResetRecoilState(DailyMainAtom);
+  const dataSet = data.hashtagList;
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);
@@ -18,7 +20,7 @@ const Weeklydate = () => {
     if (result !== false) {
       setData(result.data.data);
     } else {
-      setData([]);
+      resetData();
     }
     console.log(data);
   };
@@ -26,11 +28,11 @@ const Weeklydate = () => {
     getMainFunc(1);
   }, [daySelect]);
 
-  const dataSet = [
-    { name: "운동하기", num: 7 },
-    { name: "요리하기", num: 6 },
-    { name: "공부하기", num: 2 },
-  ];
+  // const dataSet = [
+  //   { tagContent: "운동하기", tagNum: 7 },
+  //   { tagContent: "요리하기", tagNum: 6 },
+  //   { tagContent: "공부하기", tagNum: 2 },
+  // ];
   const handleNextWeek = () => {
     setCurrentDay(currentDay.add(1, "week"));
   };

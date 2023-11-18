@@ -5,7 +5,7 @@ export const LoginApi = async (email, password) => {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/login`,
       {
-        loginId: email,
+        email: email,
         password: password,
       }
     );

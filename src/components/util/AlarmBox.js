@@ -8,7 +8,7 @@ import { Noto_Sans_KR } from "next/font/google";
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const AlarmBox = ({ data }) => {
-  const day = dayjs(data.date).format("MM/DD HH:mm");
+  const day = dayjs(data.alarmTime).format("MM/DD HH:mm");
   return (
     <div
       className={`w-full h-[12.5%] border-b-[1px] border-[#E9E9E9] flex items-center gap-[11px] ${noto.className}`}
@@ -24,9 +24,9 @@ const AlarmBox = ({ data }) => {
         </div>
         <div className={style.textoverflow}>
           {data.type === "like" ? (
-            <>새로운 공감이 달렸어요 : {data.content}</>
+            <>새로운 공감이 달렸어요 : {data.title}</>
           ) : (
-            <>새로운 댓글이 달렸어요 : {data.content}</>
+            <>새로운 댓글이 달렸어요 : {data.title}</>
           )}
         </div>
       </div>

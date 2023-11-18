@@ -9,7 +9,7 @@ const D3ChartInfo = ({ data }) => {
       .append("svg")
       .attr("width", 265)
       .attr("height", 120);
-    const maxValue = max(data, (d) => d.num);
+    const maxValue = max(data, (d) => d.tagNum);
     svg
       .selectAll("rect")
       .data(data)
@@ -17,29 +17,29 @@ const D3ChartInfo = ({ data }) => {
       .append("rect")
       .attr("x", 0)
       .attr("y", (d, i) => i * 40)
-      .attr("width", (d) => (d.num / maxValue) * 265)
+      .attr("width", (d) => (d.tagNum / maxValue) * 265)
       .attr("height", 40)
       .attr("rx", 15)
       .attr("ry", 15)
-      .attr("fill", (d) => `rgba(0, 104, 253, ${d.num / maxValue})`);
+      .attr("fill", (d) => `rgba(0, 104, 253, ${d.tagNum / maxValue})`);
 
     svg
-      .selectAll(".num")
+      .selectAll(".tagNum")
       .data(data)
       .enter()
       .append("text")
-      .text((d) => d.num)
-      .attr("x", (d) => (d.num / maxValue) * 265 - 10)
+      .text((d) => d.tagNum)
+      .attr("x", (d) => (d.tagNum / maxValue) * 265 - 10)
       .attr("y", (d, i) => i * 40 + 25)
       .attr("text-anchor", "end")
       .attr("fill", "#fff");
 
     svg
-      .selectAll(".name")
+      .selectAll(".tagContent")
       .data(data)
       .enter()
       .append("text")
-      .text((d) => d.name)
+      .text((d) => d.tagContent)
       .attr("x", 10)
       .attr("y", (d, i) => i * 40 + 25)
       .attr("fill", "#fff");

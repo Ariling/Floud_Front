@@ -14,9 +14,6 @@ import { useRouter } from "next/router";
 const MainCard = () => {
   const router = useRouter();
   const dailyData = useRecoilValue(DailyMainAtom);
-  // test용 data
-  const title = "알잘딱깔센 알찬 하루 보냈다.";
-  const memoir_id = 1;
 
   const onCardClick = (memoirId) => {
     document.startViewTransition(() => {
@@ -73,7 +70,7 @@ const MainCard = () => {
       >
         {(useCheckRetroTime(dayInfo.dayDataFormat) ||
           dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat) &&
-        (dailyData.memoir_id === 0 || dailyData.length === 0) ? (
+        dailyData.memoir_id === 0 ? (
           <>
             <div className="mt-[35px] w-[147px] h-[117.521px]">
               <Image src={notWriteCloud} alt="작성불가구름" />
@@ -132,15 +129,16 @@ const MainCard = () => {
           </>
         )}
       </div>
-      {/* 해당 부분은 나중에 위쪽으로 옮겨질 예정 */}
-      <MyRetroList
-        memoirId={memoir_id}
-        date={dayInfo.dayShow}
-        month={dayInfo.monthSee}
-        todayTitle={title}
-        onCardClick={onCardClick}
-        onEditClick={onEditClick}
-      />
+      {dailyData.title === "" ? null : (
+        <MyRetroList
+          memoirId={dailyData.memoir_id}
+          date={dayInfo.dayShow}
+          month={dayInfo.monthSee}
+          todayTitle={dailyData.title}
+          onCardClick={onCardClick}
+          onEditClick={onEditClick}
+        />
+      )}
     </>
   );
 };

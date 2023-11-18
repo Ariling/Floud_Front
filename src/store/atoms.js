@@ -63,14 +63,13 @@ export const GetMyCommentDataAtom = atom({
 const localStorageEffect =
   (key) =>
   ({ setSelf, onSet }) => {
-    if (typeof window !== 'undefined') {
-
+    if (typeof window !== "undefined") {
       const savedValue = localStorage.getItem(key);
       // setSelf -> Callbacks to set or reset the value of the atom.
       if (savedValue != null) {
         setSelf(JSON.parse(savedValue));
       }
-    
+
       // onSet -> Subscribe to changes in the atom value.
       onSet((newValue, _, isReset) => {
         isReset
@@ -84,10 +83,22 @@ export const UserIdAtom = atom({
   key: "userIdAtom",
   default: 0,
   //Atom, LocalStorage 자동연동
-  effects: [localStorageEffect('userId')],
+  effects: [localStorageEffect("userId")],
 });
 
 export const DailyMainAtom = atom({
   key: "dailyMainAtom",
+  default: {
+    user_id: 0,
+    memoir_id: 0,
+    title: "",
+    backColor: 0,
+    continueDate: 0,
+    hashtagList: [],
+  },
+});
+
+export const MonthlyHashTagAtom = atom({
+  key: "hashTagAtom",
   default: [],
 });
