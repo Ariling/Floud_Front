@@ -7,7 +7,11 @@ import BlankHeart from "@/img/nav/blanklikeheart.svg";
 import dayjs from "dayjs";
 import { Noto_Sans_KR } from "next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { GetMyLikeDataAtom, LikeandCommentCurrentday } from "@/store/atoms";
+import {
+  GetMyLikeDataAtom,
+  LikeandCommentCurrentday,
+  UserIdAtom,
+} from "@/store/atoms";
 import { getMylikeApi } from "@/apis/relatednav";
 
 const noto = Noto_Sans_KR({ subsets: ["latin"] });
@@ -15,6 +19,7 @@ const noto = Noto_Sans_KR({ subsets: ["latin"] });
 const Likebox = () => {
   const [data, setData] = useRecoilState(GetMyLikeDataAtom);
   const currentMonth = useRecoilValue(LikeandCommentCurrentday);
+  const userId = useRecoilValue(UserIdAtom);
   const getMyLikeFunc = async (user_id) => {
     const result = await getMylikeApi(
       user_id,
@@ -27,7 +32,7 @@ const Likebox = () => {
     }
   };
   useEffect(() => {
-    getMyLikeFunc(1);
+    getMyLikeFunc(userId);
   }, [currentMonth]);
   //현재는 이렇게 해 둔 상태 나중에 바꿀 예정... 근데 이거 좋아요 취소되면 어떻게 되는거?
   //여기가 이제 id대신 memori_id, title, created_at을 활용

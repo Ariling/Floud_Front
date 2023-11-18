@@ -20,7 +20,7 @@ const LoginForm = () => {
     if (result === false) {
       alert("존재하지 않은 계정이거나 비밀번호 및 이메일이 틀렸습니다");
     } else {
-      setUserId(result.data.userId);
+      setUserId(result.data.data.user_id);
       localStorage.setItem("refresh_token", result.data.refreshToken);
       localStorage.setItem("access_token", result.data.accessToken);
       alert("로그인되었습니다.");

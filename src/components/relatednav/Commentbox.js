@@ -8,7 +8,11 @@ import Image from "next/image";
 import dayjs from "dayjs";
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { GetMyCommentDataAtom, LikeandCommentCurrentday } from "@/store/atoms";
+import {
+  GetMyCommentDataAtom,
+  LikeandCommentCurrentday,
+  UserIdAtom,
+} from "@/store/atoms";
 import { getMyCommentApi } from "@/apis/relatednav";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -17,6 +21,7 @@ const noto = Noto_Sans_KR({ subsets: ["latin"] });
 const Commentbox = () => {
   const [data, setData] = useRecoilState(GetMyCommentDataAtom);
   const currentMonth = useRecoilValue(LikeandCommentCurrentday);
+  const userId = useRecoilValue(UserIdAtom);
   //여기도 그냥... memori_id, title, created_at(format필요), content로 이루어질 듯..?
   //memori_id로 이동하나보다 여기서는..
   const getMyCommentFunc = async (user_id) => {
@@ -31,7 +36,7 @@ const Commentbox = () => {
     }
   };
   useEffect(() => {
-    getMyCommentFunc(1);
+    getMyCommentFunc(userId);
   }, [currentMonth]);
   return Array.isArray(data) && data.length !== 0 ? (
     <div>

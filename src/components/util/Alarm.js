@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { AlarmTestData } from "./AlarmTestData";
 import { AlarmApi } from "@/apis/relatednav";
-import { useRecoilState } from "recoil";
-import { AlarmDataAtom } from "@/store/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { AlarmDataAtom, UserIdAtom } from "@/store/atoms";
 import AlarmBox from "./AlarmBox";
 
 const Alarm = () => {
   //지금 테스트중...
-  const user_id = 1;
+  const user_id = useRecoilValue(UserIdAtom);
   const [data, setData] = useRecoilState(AlarmDataAtom);
   const AlarmFunc = async (user_id) => {
     const result = await AlarmApi(user_id);

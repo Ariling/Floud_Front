@@ -1,7 +1,7 @@
-import { DailyMainAtom, weeklyDayAtom } from "@/store/atoms";
+import { DailyMainAtom, UserIdAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-import { useRecoilState, useResetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import MainCard from "./MainCard";
 import D3ChartInfo from "./D3ChartInfo";
 import PrevweekBtn from "@/img/main/prevweek.svg";
@@ -15,6 +15,7 @@ const Weeklydate = () => {
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);
+  const userId = useRecoilValue(UserIdAtom);
   const getMainFunc = async (user_id) => {
     const result = await GetMainApi(user_id, daySelect.daySelectFormat);
     if (result !== false) {
@@ -25,7 +26,7 @@ const Weeklydate = () => {
     console.log(data);
   };
   useEffect(() => {
-    getMainFunc(1);
+    getMainFunc(userId);
   }, [daySelect]);
 
   // const dataSet = [
