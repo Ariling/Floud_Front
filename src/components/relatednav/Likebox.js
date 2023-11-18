@@ -14,13 +14,16 @@ const noto = Noto_Sans_KR({ subsets: ["latin"] });
 
 const Likebox = () => {
   const [data, setData] = useRecoilState(GetMyLikeDataAtom);
-  const currentMonth = useRecoilValue(LikeandCommentCurrentday).format(
-    "YYYY-MM-DD"
-  );
+  const currentMonth = useRecoilValue(LikeandCommentCurrentday);
   const getMyLikeFunc = async (user_id) => {
-    const result = await getMylikeApi(user_id, currentMonth);
+    const result = await getMylikeApi(
+      user_id,
+      currentMonth.format("YYYY-MM-DDTHH:mm:ss")
+    );
     if (result !== false) {
       setData(result.data.data);
+    } else {
+      setData([]);
     }
   };
   useEffect(() => {

@@ -26,6 +26,8 @@ const Commentbox = () => {
     );
     if (result !== false) {
       setData(result.data.data);
+    } else {
+      setData([]);
     }
   };
   useEffect(() => {

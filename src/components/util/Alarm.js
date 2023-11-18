@@ -13,6 +13,8 @@ const Alarm = () => {
     const result = await AlarmApi(user_id);
     if (result !== false) {
       setData(result.data.data);
+    } else {
+      setData([]);
     }
   };
   useEffect(() => {

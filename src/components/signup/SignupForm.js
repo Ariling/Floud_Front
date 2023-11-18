@@ -47,7 +47,7 @@ const SignupForm = () => {
       <div className="logininputwrap">
         <div className="logintext">Email</div>
         <input
-          placeholder="이메일을 입력해주세요"
+          placeholder="이메일을 입력해주세요(ex.***@naver.com)"
           type="email"
           id="userEmail"
           className="logininput"
@@ -58,7 +58,7 @@ const SignupForm = () => {
       <div className="logininputwrap">
         <div className="logintext">Password</div>
         <input
-          placeholder="영문+숫자+특수문자 8자 이상"
+          placeholder="영문+숫자로 6자 이상 입력해주세요"
           type="password"
           id="userPw"
           className="logininput"

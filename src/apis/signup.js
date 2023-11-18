@@ -7,7 +7,7 @@ export const SignupApi = async (email, password, name, phone, birth) => {
       {
         email: email,
         password: password,
-        name: name,
+        username: name,
         phone: phone,
         birth: birth,
       }

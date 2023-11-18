@@ -14,7 +14,7 @@ export default function Sidebar() {
   const [option, setOption] = useRecoilState(sidebarShowAtom);
   return (
     <div
-      className={`fixed top-0 left-0 bg-white z-50 w-screen h-screen ${
+      className={`fixed top-0 left-0 bg-white z-50 w-screen h-screen overflow-y-scroll ${
         open ? style.s_bar_open : style.s_bar_close
       }`}
     >

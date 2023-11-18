@@ -9,8 +9,8 @@ export const weeklyDayAtom = atom({
       monthShow: "",
       dayShow: "",
       monthSee: "",
-      yearShow: "",
       dayDataFormat: "",
+      daySelectFormat: "",
     },
   ],
 });
@@ -85,4 +85,9 @@ export const UserIdAtom = atom({
   default: 0,
   //Atom, LocalStorage 자동연동
   effects: [localStorageEffect('userId')],
+});
+
+export const DailyMainAtom = atom({
+  key: "dailyMainAtom",
+  default: [],
 });
