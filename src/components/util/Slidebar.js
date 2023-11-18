@@ -13,9 +13,13 @@ export default function Sidebar() {
   const [open, setOpen] = useRecoilState(sidebarOpenAtom);
   const [option, setOption] = useRecoilState(sidebarShowAtom);
   return (
-    <div className="fixed top-0 bg-white z-50 w-screen h-screen">
+    <div
+      className={`fixed top-0 left-0 bg-white z-50 w-screen h-screen ${
+        open ? style.s_bar_open : style.s_bar_close
+      }`}
+    >
       {option === "basic" ? (
-        <div className="pt-[25px]">
+        <div className="pt-[23px]">
           <div
             className={style.s_bar_top}
             onClick={() => {
@@ -35,7 +39,7 @@ export default function Sidebar() {
             >
               나의 회고 FlouD
             </ul>
-            <ul
+            <li
               onClick={() => {
                 setOption("basic");
                 setOpen(false);
@@ -43,7 +47,7 @@ export default function Sidebar() {
               }}
             >
               익명회고
-            </ul>
+            </li>
             <li onClick={() => setOption("comment")}>댓글/좋아요</li>
           </div>
         </div>

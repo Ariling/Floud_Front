@@ -8,6 +8,7 @@ import PrevweekBtn from "@/img/main/prevweek.svg";
 import NextweekBtn from "@/img/main/nextweek.svg";
 
 const Weeklydate = () => {
+
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);

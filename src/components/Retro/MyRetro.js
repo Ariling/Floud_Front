@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import style from '../../styles/Retro.module.scss';
 import Image from 'next/image';
+import Back from '@/img/svg/chevron_left.svg'
+import { useRouter } from 'next/router';
 
 // prop 으로 만들어 놓기....~
 
@@ -18,19 +20,20 @@ export default function MyRetro({
     tag2,
     tag3,
 }) {
-
-    const colors = [ '#c8f5ff', '#bdd4ff', '#a1d8ff', '#c3d0ea'];
+    const router = useRouter();
+    const colors = [ '#c8f5ff', '#bdd4ff', '#a1d8ff', '#DCE8FF'];
     const colorIndex = date%4;
 
-    // const getTextColorClass = () => {
-    //     switch(colorIndex) {
-    //         case 1: return style.te
-    //     }
-    // }
+    const onBackClick = () => {
+        document.startViewTransition(() => {
+            router.push(`/main`);
+          })
+    }
 
     return (
         <>
             <div className={style.retro} style={{ backgroundColor: colors[colorIndex] }}>
+                <Back onClick={onBackClick} />
                 <div className={style.row}>
                     <div className={style.date}>{date}</div>
                     <div className={style.month}>{month}</div>

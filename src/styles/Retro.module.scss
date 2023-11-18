@@ -43,6 +43,7 @@
 }
 
 .retroS {
+  cursor: pointer;
   width: 100%;
   border-radius: 20px;
   display: flex;
@@ -163,11 +164,11 @@
   background-image: linear-gradient(to right, white 0px, transparent 0px),
     linear-gradient(to left, white 0px, transparent 0px),
     repeating-linear-gradient(
-      #c3d0ea,
-      #c3d0ea 34px,
+      #DCE8FF,
+      #DCE8FF 34px,
       #ccc 34px,
       #ccc 35px,
-      #c3d0ea 35px
+      #DCE8FF 35px
     );
 }
 

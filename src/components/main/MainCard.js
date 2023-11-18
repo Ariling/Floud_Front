@@ -8,10 +8,35 @@ import { testData } from "./testData.js";
 import writeCloud from "@/img/main/writeCloud.png";
 import notWriteCloud from "@/img/main/notWriteCloud.png";
 import Image from "next/image.js";
-import PopupModalBtn from "../util/PopupModalBtn.js";
-import PostCard from "./PostCard.js";
+import MyRetroList from "@/components/Retro/MyRetroList";
+import { useRouter } from "next/router";
 
 const MainCard = () => {
+  const router = useRouter();
+  // test용 data
+  const date = 16;
+  const month = "Oct";
+  const title = "알잘딱깔센 알찬 하루 보냈다.";
+  const memoir_id = 1;
+
+  const onCardClick = (memoirId) => {
+    document.startViewTransition(() => {
+      router.push(`/memoir/${memoirId}`);
+    });
+  };
+
+  const onEditClick = (memoirId) => {
+    document.startViewTransition(() => {
+      router.push(`/memoir/edit/${memoirId}`);
+    });
+  };
+
+  const onWriteClick = () => {
+    document.startViewTransition(() => {
+      router.push(`/memoir/write/${dayInfo.dayDataFormat}`);
+    });
+  };
+
   const dayInfo = useRecoilValue(weeklyDayAtom);
   const [tomorrowDay, setTomorrowDay] = useState(
     `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`
@@ -44,7 +69,9 @@ const MainCard = () => {
   const Countdown = dynamic(() => import("./countdown.js"), { ssr: false });
   return (
     <>
-      <div className="w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center">
+      <div
+        className={`w-full rounded-[20px] bg-[#E9EDF1] flex flex-col justify-center items-center`}
+      >
         {(useCheckRetroTime(dayInfo.dayDataFormat) ||
           dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat) &&
         data.length === 0 ? (
@@ -65,7 +92,7 @@ const MainCard = () => {
             </div>
             <button
               className="my-[26px] h-[50px] w-[292px] rounded-[15px] bg-[#66A4FF] text-[20px] font-bold tracking-[-1.2px] text-white"
-              onClick={() => alert("작성가능!")}
+              onClick={onWriteClick}
             >
               회고록 작성하기
             </button>
@@ -107,7 +134,14 @@ const MainCard = () => {
         )}
       </div>
       {/* 해당 부분은 나중에 위쪽으로 옮겨질 예정 */}
-      <PostCard />
+      <MyRetroList
+        memoirId={memoir_id}
+        date={date}
+        month={`${month}.`}
+        todayTitle={title}
+        onCardClick={onCardClick}
+        onEditClick={onEditClick}
+      />
     </>
   );
 };
