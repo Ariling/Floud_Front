@@ -22,17 +22,11 @@ const Weeklydate = () => {
     } else {
       resetData();
     }
-    console.log(data);
   };
   useEffect(() => {
     getMainFunc(userId.user_id);
   }, [daySelect]);
 
-  // const dataSet = [
-  //   { tagContent: "운동하기", tagNum: 7 },
-  //   { tagContent: "요리하기", tagNum: 6 },
-  //   { tagContent: "공부하기", tagNum: 2 },
-  // ];
   const handleNextWeek = () => {
     setCurrentDay(currentDay.add(1, "week"));
   };

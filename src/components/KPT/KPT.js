@@ -5,10 +5,10 @@ import style from "@/styles/KPTInsert.module.scss";
 import PopupModalBtn from "../util/PopupModalBtn";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from 'next/router';
-import dayjs from 'dayjs';
-import { useRecoilValue } from 'recoil';
-import { UserIdAtom } from '@/store/atoms';
+import { useRouter } from "next/router";
+import dayjs from "dayjs";
+import { useRecoilValue } from "recoil";
+import { UserIdAtom } from "@/store/atoms";
 
 export default function KPT() {
   const router = useRouter();
@@ -21,6 +21,7 @@ export default function KPT() {
   const [tagValue2, setTagValue2] = useState("");
   const [tagValue3, setTagValue3] = useState("");
   const userId = useRecoilValue(UserIdAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onInputChange = (e) => {
     setInputValue(e.target.value);
@@ -45,20 +46,27 @@ export default function KPT() {
   const onTagChange3 = (e) => {
     setTagValue3(e.target.value);
   };
-  const onButtonClick = () => {
-    axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir`, {
-      user_id: userId.user_id,
-      title: inputValue,
-      place: "어딘가에서", //확인 필요
-      createdAt: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
-      memoirKeep: keepValue,
-      memoirProblem: problemValue,
-      memoirTry: tryValue,
-      hashtag1: tagValue1,
-      hashtag2: tagValue2,
-      hashtag3: tagValue3,
-      createdAt: date,
-    });
+  const onButtonClick = async () => {
+    if (isLoading) {
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir`, {
+        user_id: userId.user_id,
+        title: inputValue,
+        place: "어딘가에서", //확인 필요
+        createdAt: dayjs().format("YYYY-MM-DDTHH:mm:ss"),
+        memoirKeep: keepValue,
+        memoirProblem: problemValue,
+        memoirTry: tryValue,
+        hashtag1: tagValue1,
+        hashtag2: tagValue2,
+        hashtag3: tagValue3,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
