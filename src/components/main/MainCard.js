@@ -1,5 +1,5 @@
 import useCheckRetroTime from "@/hooks/useCheckRetroTime";
-import { weeklyDayAtom } from "@/store/atoms";
+import { DailyMainAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 
 const MainCard = () => {
   const router = useRouter();
+  const dailyData = useRecoilValue(DailyMainAtom);
   // test용 data
   const date = 16;
   const month = "Oct";

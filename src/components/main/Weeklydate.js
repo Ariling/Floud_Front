@@ -1,4 +1,4 @@
-import { weeklyDayAtom } from "@/store/atoms";
+import { DailyMainAtom, weeklyDayAtom } from "@/store/atoms";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -6,12 +6,26 @@ import MainCard from "./MainCard";
 import D3ChartInfo from "./D3ChartInfo";
 import PrevweekBtn from "@/img/main/prevweek.svg";
 import NextweekBtn from "@/img/main/nextweek.svg";
+import { GetMainApi } from "@/apis/main";
 
 const Weeklydate = () => {
-
+  const [data, setData] = useRecoilState(DailyMainAtom);
   const [currentDay, setCurrentDay] = useState(dayjs());
   //String으로 담아두기
   const [daySelect, setDaySelect] = useRecoilState(weeklyDayAtom);
+  const getMainFunc = async (user_id) => {
+    const result = await GetMainApi(user_id, daySelect.daySelectFormat);
+    if (result !== false) {
+      setData(result.data.data);
+    } else {
+      setData([]);
+    }
+    console.log(data);
+  };
+  useEffect(() => {
+    getMainFunc(1);
+  }, [daySelect]);
+
   const dataSet = [
     { name: "운동하기", num: 7 },
     { name: "요리하기", num: 6 },
@@ -37,8 +51,8 @@ const Weeklydate = () => {
       monthShow: date.format("MM"),
       dayShow: date.format("D"),
       monthSee: date.format("MMM"),
-      yearShow: date.format("YYYY"),
       dayDataFormat: date.format("YYYY-MM-DD"),
+      daySelectFormat: date.format("YYYY-MM-DDTHH:mm:ss"),
     });
   };
   useEffect(() => {
