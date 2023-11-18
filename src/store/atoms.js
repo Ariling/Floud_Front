@@ -9,8 +9,8 @@ export const weeklyDayAtom = atom({
       monthShow: "",
       dayShow: "",
       monthSee: "",
-      yearShow: "",
       dayDataFormat: "",
+      daySelectFormat: "",
     },
   ],
 });
@@ -62,4 +62,9 @@ export const GetMyCommentDataAtom = atom({
 export const UserIdAtom = atom({
   key: "userIdAtom",
   default: 0,
+});
+
+export const DailyMainAtom = atom({
+  key: "dailyMainAtom",
+  default: [],
 });

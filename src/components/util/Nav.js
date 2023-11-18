@@ -17,7 +17,7 @@ const Nav = () => {
       <NavOption />
       {option === "alarm" && open === false ? (
         <>
-          <div className="fixed top-0 bg-white z-50 w-screen h-screen">
+          <div className="fixed top-0 bg-white z-50 w-screen h-screen overflow-y-scroll">
             <NavOption />
             <Alarm />
           </div>
