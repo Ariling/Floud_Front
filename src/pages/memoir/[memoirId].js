@@ -3,6 +3,7 @@ import MyRetroList from "@/components/Retro/MyRetroList";
 import { useRouter } from "next/router";
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 
 const index = () => {
   const mmm = {
@@ -23,11 +24,23 @@ const index = () => {
   const [memoir, setMemoir] = useState(mmm);
 
   useEffect(() => {
-    axios.get(`/${router.query.memoirId}`)
-    .then(res => {
-      setMemoir(res.data);
-    })
-  }, []);
+    if (router.query.memoirId) {
+      axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/${router.query.memoirId}`)
+      .then(res => {
+        const data = res.data.data;
+        const day = dayjs(data.createdAt);
+        setMemoir({
+          ...data,
+          date: day.format("DD"),
+          month: day.format("MMM")
+        });
+      })
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    console.log(memoir);
+  }, [memoir])
   
   return (
     <>
@@ -36,9 +49,9 @@ const index = () => {
         date={memoir.date}
         month={`${memoir.month}.`}
         todayTitle={memoir.title}
-        memoir_keep={memoir.memoir_keep}
-        memoir_problem={memoir.memoir_problem}
-        memoir_try={memoir.memoir_try}
+        memoir_keep={memoir.memoirKeep}
+        memoir_problem={memoir.memoirProblem}
+        memoir_try={memoir.memoirTry}
         tag1={memoir.tag1}
         tag2={memoir.tag2}
         tag3={memoir.tag3}

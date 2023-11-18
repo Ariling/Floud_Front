@@ -9,11 +9,14 @@ import AnonyCommentInsert from "../../components/Anony/AnonyCommentInsert";
 import { testData } from "./testData";
 import dayjs from "dayjs";
 import axios from 'axios';
+import { useRecoilValue } from "recoil";
+import { UserIdAtom } from "@/store/atoms";
 
 export default function AnnoyList() {
 	const [list, setList] = useState(testData);
 	const [isDetailOpen, setIsDetailOpen] = useState(false);
 	const [activeIndex, setActiveIndex] = useState(0);
+	const userId = useRecoilValue(UserIdAtom);
 
 	const onDetailOpen = () => {
 		setIsDetailOpen(true);
@@ -24,7 +27,8 @@ export default function AnnoyList() {
 	};
 
 	const getAnonyList = () => {
-		axios.get(`/anony-memoir`)
+		// userId 수정 필요
+		axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/memoir/anonymous/1`)
 			.then(res => {
 				setList(res.data);
 			})
