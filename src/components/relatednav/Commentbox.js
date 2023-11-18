@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { CommentTestData } from "./CommentTestData";
+import React, { useEffect } from "react";
 import CommentBox from "@/img/nav/commentbox.png";
 import CommentXBox from "@/img/nav/commentXbox.svg";
 import CommentBtn from "@/img/nav/commentXbtn.svg";
@@ -60,14 +59,14 @@ const Commentbox = () => {
                 <CommentBtn />
               </div> */}
             </div>
-            <div className="px-[22px] w-full flex absolute top-[12%] flex-col">
+            <div className="px-[22px] w-[90%] flex absolute top-[12%] flex-col">
               <div className="ml-[7px] flex gap-[25px] text-[22px] font-extrabold tracking-[-1.2px] leading-[110%]">
                 <div
                   className={`text-[34px] tracking-[-2.073px] leading-[22.215px] ${inter.className}`}
                 >
                   {dayjs(e.createdAt).format("DD")}
                 </div>
-                <div>{e.title}</div>
+                <div className={`${style.titleoverflow}`}>{e.title}</div>
               </div>
               <div className="mt-[22px] px-6 py-[18px] flex items-center gap-[11px] h-[55px] rounded-[20px] bg-[#E9EDF1]">
                 <div>

@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import dynamic from "next/dynamic";
-import { testData } from "./testData.js";
 import writeCloud from "@/img/main/writeCloud.png";
 import notWriteCloud from "@/img/main/notWriteCloud.png";
 import Image from "next/image.js";
@@ -51,12 +50,6 @@ const MainCard = () => {
     setData([]);
     //여기서는 api를 받아서 얻어낸 데이터이기 때문에 굳이  map을 돌릴 필요는 없을 듯!
     //e.date === dayInfo.dayDataFormat ? setData(e) : setData([]); 이것만 필요
-    for (let e of testData) {
-      if (e.date !== dayInfo.dayDataFormat) continue;
-      else {
-        setData(...data, e);
-      }
-    }
     setTomorrowDay(
       dayjs().format("YYYY-MM-DD") === dayInfo.dayDataFormat
         ? `${dayjs().add(1, "day").format("YYYY-MM-DD")} 06:00:00`

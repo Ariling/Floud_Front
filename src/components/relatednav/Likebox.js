@@ -56,7 +56,7 @@ const Likebox = () => {
                 <div className="text-[34px] tracking-[-2.073px] leading-[22.215px]">
                   {dayjs(e.createdAt).format("DD")}
                 </div>
-                <div className={`${style.textoverflow} ${noto.className}`}>
+                <div className={`${style.liketextoverflow} ${noto.className}`}>
                   {e.title}
                 </div>
               </div>
